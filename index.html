@@ -22,13 +22,14 @@
             box-sizing: border-box;
         }
 
-body {
-            /* Usamos un degradado radial muy sutil para dar la profundidad oscura de la imagen */
+        body {
+            /* Fondo limpio con profundidad estilo premium (sin cuadrícula) */
             background: radial-gradient(circle at 30% 50%, #29313a 0%, #1e242c 80%);
-            background-color: #1e242c; /* Color de respaldo */
+            background-color: var(--bg-dark); /* Color de respaldo */
             color: var(--text-main);
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
+            min-height: 100vh;
         }
 
         /* --- Menú Minimalista / Estilo Game --- */
@@ -154,7 +155,7 @@ body {
         }
 
         .badge img {
-            width: 60px; /* Ajusta según tu imagen */
+            width: 60px;
             clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
             border: 1px solid var(--text-muted);
             padding: 5px;
@@ -176,21 +177,19 @@ body {
             z-index: 5;
         }
 
-        /* Efecto Profundidad HUD (Fondo de Multitud) */
+        /* Efecto Profundidad HUD (Marco Base) */
         .hud-background {
             position: absolute;
             right: 40px;
             bottom: 20px;
             width: 80%;
             height: 70%;
-            /* Reemplaza esta URL con tu imagen de la multitud */
-            background-image: url('https://via.placeholder.com/800x600/1a1f26/ffffff?text=Imagen+Multitud+Fondo'); 
-            background-size: cover;
-            background-position: center;
+            /* Borde sutil */
+            border: 2px solid rgba(255,255,255,0.05);
             /* Corte diagonal en la esquina superior izquierda */
             clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
-            border: 2px solid rgba(255,255,255,0.1);
-            filter: grayscale(80%) opacity(0.6);
+            background-color: rgba(255, 255, 255, 0.02);
+            z-index: 3;
         }
 
         /* Decoraciones HUD (Líneas finas) */
@@ -198,12 +197,56 @@ body {
             content: '';
             position: absolute;
             top: -2px; left: -2px; right: -2px; bottom: -2px;
-            border: 1px solid rgba(255,255,255,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
             clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
             pointer-events: none;
         }
 
-        /* Jugador de Fútbol */
+        /* --- Slideshow Estilo Menú FIFA --- */
+        .fifa-slideshow {
+            position: absolute;
+            bottom: 5%; 
+            right: 5%;  
+            width: 500px;
+            height: 350px;
+            z-index: 4; /* Sobre el fondo HUD, detrás del jugador */
+            
+            /* Difuminado de los bordes hacia el fondo */
+            -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+            mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
+            
+            pointer-events: none; 
+        }
+
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            opacity: 0;
+            filter: grayscale(20%) contrast(110%);
+            
+            /* Animación: 6 segundos en total (2s por foto x 3 fotos) */
+            animation: fifaCrossfade 6s infinite;
+        }
+
+        /* Tiempos de aparición */
+        .slide-1 { animation-delay: 0s; }
+        .slide-2 { animation-delay: 2s; }
+        .slide-3 { animation-delay: 4s; }
+
+        /* La animación de fundido */
+        @keyframes fifaCrossfade {
+            0%   { opacity: 0; }
+            10%  { opacity: 0.6; }
+            33%  { opacity: 0.6; }
+            43%  { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Jugador de Fútbol principal */
         .player-img {
             position: absolute;
             bottom: 10%;
@@ -220,7 +263,6 @@ body {
             right: 20%;
             width: 80px;
             z-index: 7;
-            /* clean spin, once every 3 seconds */
             animation: spin 3s linear infinite;
         }
 
@@ -234,6 +276,7 @@ body {
             h1 { font-size: 5rem; }
             .subtitle { font-size: 1.8rem; }
             .content-left { width: 60%; }
+            .fifa-slideshow { width: 350px; height: 250px; }
         }
     </style>
 </head>
@@ -260,21 +303,26 @@ body {
         </div>
 
         <div class="image-right">
-            <!-- Capa de profundidad HUD con la multitud -->
+            <!-- Capa de profundidad HUD -->
             <div class="hud-background"></div>
+
+            <!-- Slideshow estilo FIFA en la esquina -->
+            <div class="fifa-slideshow">
+                <!-- Reemplaza el src con las rutas de tus fotos reales -->
+                <img src="https://via.placeholder.com/600x400/222/fff?text=Foto+Evento+1" class="slide slide-1">
+                <img src="https://via.placeholder.com/600x400/444/fff?text=Foto+Evento+2" class="slide slide-2">
+                <img src="https://via.placeholder.com/600x400/111/fff?text=Foto+Evento+3" class="slide slide-3">
+            </div>
             
-            <!-- Cambia el 'src' por la ruta de tu jugador -->
-            <!-- Ejemplo: src="assets/jugador.png" -->
+            <!-- Jugador principal (Asegúrate de que tenga fondo transparente PNG) -->
             <img src="https://via.placeholder.com/400x600/transparent/ffffff?text=PNG+Jugador" alt="Jugador de Fútbol" class="player-img">
             
-            <!-- Cambia el 'src' por la ruta de tu balón -->
-            <!-- Animación CSS sutil aplicada a esta clase -->
+            <!-- Balón giratorio -->
             <img src="https://via.placeholder.com/100x100/ffffff/000000?text=Balon" alt="Balón girando" class="spinning-ball">
         </div>
     </main>
 
     <div class="badge">
-        <!-- Reemplaza por tu mini logo -->
         <img src="https://via.placeholder.com/60x60/333/fff?text=LOGO" alt="Pipe Logo">
         <p>Mini Logo<br>Authenticity Badge</p>
     </div>
