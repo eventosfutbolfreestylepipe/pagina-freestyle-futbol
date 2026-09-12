@@ -1,78 +1,286 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pipe Fútbol | Fútbol Freestyle & Shows en Colombia</title>
-  <meta name="description" content="Fútbol freestyle: una experiencia inolvidable que conecta y sorprende. Shows para eventos corporativos, activaciones de marca, colegios y fiestas en Colombia." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pipe Fútbol - Eventos Masivos</title>
+    <!-- Fuentes estilo Tech / Sport -->
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Teko:wght@600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #1e242c;
+            --text-main: #ffffff;
+            --text-muted: #a0aec0;
+            --accent-hud: #4a5568;
+            --glow-hud: rgba(138, 180, 248, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: 'Rajdhani', sans-serif;
+            overflow-x: hidden;
+            /* Patrón de superposición geométrica sutil */
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* --- Menú Minimalista / Estilo Game --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 60px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-line {
+            width: 150px;
+            height: 1px;
+            background-color: var(--text-muted);
+            margin-right: 20px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--text-main);
+            text-shadow: 0 0 8px var(--text-main);
+        }
+
+        nav span {
+            color: var(--text-muted);
+        }
+
+        /* --- Hero Section --- */
+        main {
+            display: flex;
+            padding: 40px 60px;
+            min-height: 80vh;
+            position: relative;
+        }
+
+        .content-left {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Teko', sans-serif;
+            font-size: 7rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .subtitle {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 50px;
+            max-width: 80%;
+            line-height: 1.2;
+        }
+
+        /* --- Botón CTA con Hover Efecto HUD --- */
+        .btn-cta {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(90deg, #424e5a 0%, #2a343d 100%);
+            color: white;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid #6b7a8f;
+            cursor: pointer;
+            width: fit-content;
+            /* Corte geométrico en las esquinas */
+            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .btn-cta:hover {
+            background: linear-gradient(90deg, #5c6c7d 0%, #3a4752 100%);
+            border-color: #a0aec0;
+            box-shadow: 0 0 15px var(--glow-hud);
+            transform: translateY(-2px);
+        }
+
+        .btn-cta span {
+            margin-left: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* --- Mini Logo Authenticity Badge --- */
+        .badge {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .badge img {
+            width: 60px; /* Ajusta según tu imagen */
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            border: 1px solid var(--text-muted);
+            padding: 5px;
+        }
+
+        .badge p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.2;
+        }
+
+        /* --- Contenedor de Imagen y HUD (Lado Derecho) --- */
+        .image-right {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 60%;
+            height: 100%;
+            z-index: 5;
+        }
+
+        /* Efecto Profundidad HUD (Fondo de Multitud) */
+        .hud-background {
+            position: absolute;
+            right: 40px;
+            bottom: 20px;
+            width: 80%;
+            height: 70%;
+            /* Reemplaza esta URL con tu imagen de la multitud */
+            background-image: url('https://via.placeholder.com/800x600/1a1f26/ffffff?text=Imagen+Multitud+Fondo'); 
+            background-size: cover;
+            background-position: center;
+            /* Corte diagonal en la esquina superior izquierda */
+            clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
+            border: 2px solid rgba(255,255,255,0.1);
+            filter: grayscale(80%) opacity(0.6);
+        }
+
+        /* Decoraciones HUD (Líneas finas) */
+        .hud-background::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            border: 1px solid rgba(255,255,255,0.3);
+            clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
+            pointer-events: none;
+        }
+
+        /* Jugador de Fútbol */
+        .player-img {
+            position: absolute;
+            bottom: 10%;
+            right: 25%;
+            height: 80%;
+            z-index: 6;
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
+        }
+
+        /* --- APNG Spinning Ball --- */
+        .spinning-ball {
+            position: absolute;
+            top: 25%;
+            right: 20%;
+            width: 80px;
+            z-index: 7;
+            /* clean spin, once every 3 seconds */
+            animation: spin 3s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive básico */
+        @media (max-width: 1024px) {
+            h1 { font-size: 5rem; }
+            .subtitle { font-size: 1.8rem; }
+            .content-left { width: 60%; }
+        }
+    </style>
 </head>
 <body>
- 
-  <div class="bg-grid" aria-hidden="true"></div>
- 
-  <header class="navbar">
-    <a href="#inicio" class="brand">Pipe<span>Fútbol</span></a>
-    <nav class="main-nav" aria-label="Navegación principal">
-      <a href="#inicio">Inicio</a>
-      <a href="#shows">Shows</a>
-      <a href="#contacto">Contacto</a>
-    </nav>
-  </header>
- 
-  <main>
-    <section id="inicio" class="hero">
- 
-      <div class="hero-content">
-        <p class="hero-eyebrow">Fútbol Freestyle</p>
-        <h1 class="hero-title">Mucho más<br>que fútbol</h1>
-        <p class="hero-subtitle">Una experiencia inolvidable que conecta y sorprende.</p>
- 
-        <a href="#contacto" class="cta-button">
-          <span>Cotizar mi evento</span>
-          <svg class="cta-arrow" width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M1 8H21M21 8L14 1M21 8L14 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </a>
- 
-        <div class="badge">
-          <div class="badge-shield">PF</div>
-          <span>Shows verificados en Colombia</span>
+
+    <header>
+        <div class="logo">Pipe Fútbol</div>
+        <nav>
+            <div class="nav-line"></div>
+            <a href="#">Inicio</a> <span>|</span>
+            <a href="#">Shows</a> <span>|</span>
+            <a href="#">Contacto</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="content-left">
+            <h1>MUCHO MÁS<br>QUE FÚTBOL</h1>
+            <p class="subtitle">Eventos masivos y shows de alto impacto en Colombia.</p>
+            
+            <button class="btn-cta">
+                Cotizar Mi Evento <span>&#10142;</span>
+            </button>
         </div>
-      </div>
- 
-      <div class="hero-visual">
-        <div class="hud-frame">
-          <img src="assets/img/crowd-bg.jpg" alt="Multitud en un evento en vivo" class="crowd-img" />
-          <div class="hud-lines" aria-hidden="true"></div>
+
+        <div class="image-right">
+            <!-- Capa de profundidad HUD con la multitud -->
+            <div class="hud-background"></div>
+            
+            <!-- Cambia el 'src' por la ruta de tu jugador -->
+            <!-- Ejemplo: src="assets/jugador.png" -->
+            <img src="https://via.placeholder.com/400x600/transparent/ffffff?text=PNG+Jugador" alt="Jugador de Fútbol" class="player-img">
+            
+            <!-- Cambia el 'src' por la ruta de tu balón -->
+            <!-- Animación CSS sutil aplicada a esta clase -->
+            <img src="https://via.placeholder.com/100x100/ffffff/000000?text=Balon" alt="Balón girando" class="spinning-ball">
         </div>
- 
-        <div class="player-wrap">
-          <img src="assets/img/player.png" alt="Freestyler ejecutando un truco con el balón" class="player-img" />
-          <img src="assets/img/ball.png" alt="Balón de fútbol" class="ball-img" />
-        </div>
-      </div>
- 
-    </section>
- 
-    <section id="shows" class="section-placeholder">
-      <h2>Shows</h2>
-      <p>Próxima sección: tipos de show (corporativos, activaciones de marca, cumpleaños, colegios).</p>
-    </section>
- 
-    <section id="contacto" class="section-placeholder">
-      <h2>Contacto</h2>
-      <p>Próxima sección: formulario o datos de contacto para cotizar el evento.</p>
-    </section>
-  </main>
- 
-  <footer class="site-footer">
-    <p>&copy; <span id="year"></span> Pipe Fútbol. Todos los derechos reservados.</p>
-  </footer>
- 
-  <script src="assets/script.js"></script>
+    </main>
+
+    <div class="badge">
+        <!-- Reemplaza por tu mini logo -->
+        <img src="https://via.placeholder.com/60x60/333/fff?text=LOGO" alt="Pipe Logo">
+        <p>Mini Logo<br>Authenticity Badge</p>
+    </div>
+
 </body>
 </html>
