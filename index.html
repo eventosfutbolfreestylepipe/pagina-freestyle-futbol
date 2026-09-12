@@ -1,11 +1,78 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mi Primera Página</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pipe Fútbol | Fútbol Freestyle & Shows en Colombia</title>
+  <meta name="description" content="Fútbol freestyle: una experiencia inolvidable que conecta y sorprende. Shows para eventos corporativos, activaciones de marca, colegios y fiestas en Colombia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 <body>
-  <h1>¡Hola Mundo! Mi página está en camino.</h1>
+ 
+  <div class="bg-grid" aria-hidden="true"></div>
+ 
+  <header class="navbar">
+    <a href="#inicio" class="brand">Pipe<span>Fútbol</span></a>
+    <nav class="main-nav" aria-label="Navegación principal">
+      <a href="#inicio">Inicio</a>
+      <a href="#shows">Shows</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+ 
+  <main>
+    <section id="inicio" class="hero">
+ 
+      <div class="hero-content">
+        <p class="hero-eyebrow">Fútbol Freestyle</p>
+        <h1 class="hero-title">Mucho más<br>que fútbol</h1>
+        <p class="hero-subtitle">Una experiencia inolvidable que conecta y sorprende.</p>
+ 
+        <a href="#contacto" class="cta-button">
+          <span>Cotizar mi evento</span>
+          <svg class="cta-arrow" width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1 8H21M21 8L14 1M21 8L14 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+ 
+        <div class="badge">
+          <div class="badge-shield">PF</div>
+          <span>Shows verificados en Colombia</span>
+        </div>
+      </div>
+ 
+      <div class="hero-visual">
+        <div class="hud-frame">
+          <img src="assets/img/crowd-bg.jpg" alt="Multitud en un evento en vivo" class="crowd-img" />
+          <div class="hud-lines" aria-hidden="true"></div>
+        </div>
+ 
+        <div class="player-wrap">
+          <img src="assets/img/player.png" alt="Freestyler ejecutando un truco con el balón" class="player-img" />
+          <img src="assets/img/ball.png" alt="Balón de fútbol" class="ball-img" />
+        </div>
+      </div>
+ 
+    </section>
+ 
+    <section id="shows" class="section-placeholder">
+      <h2>Shows</h2>
+      <p>Próxima sección: tipos de show (corporativos, activaciones de marca, cumpleaños, colegios).</p>
+    </section>
+ 
+    <section id="contacto" class="section-placeholder">
+      <h2>Contacto</h2>
+      <p>Próxima sección: formulario o datos de contacto para cotizar el evento.</p>
+    </section>
+  </main>
+ 
+  <footer class="site-footer">
+    <p>&copy; <span id="year"></span> Pipe Fútbol. Todos los derechos reservados.</p>
+  </footer>
+ 
+  <script src="assets/script.js"></script>
 </body>
 </html>
