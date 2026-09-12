@@ -22,16 +22,13 @@
             box-sizing: border-box;
         }
 
-        body {
-            background-color: var(--bg-dark);
+body {
+            /* Usamos un degradado radial muy sutil para dar la profundidad oscura de la imagen */
+            background: radial-gradient(circle at 30% 50%, #29313a 0%, #1e242c 80%);
+            background-color: #1e242c; /* Color de respaldo */
             color: var(--text-main);
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
-            /* Patrón de superposición geométrica sutil */
-            background-image: 
-                linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-            background-size: 50px 50px;
         }
 
         /* --- Menú Minimalista / Estilo Game --- */
