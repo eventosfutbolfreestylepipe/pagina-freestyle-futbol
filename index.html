@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pipe Fútbol Freestyle - Eventos Masivos</title>
+    <title>Pipe Shows - Futbol Freestyle Colombia</title>
     <!-- Fuentes estilo Tech / Sport -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Teko:wght@600&display=swap" rel="stylesheet">
     
@@ -44,10 +44,11 @@
         }
 
         .logo {
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
+            line-height: 1.1;
         }
 
         nav {
@@ -107,12 +108,26 @@
         .subtitle {
             font-size: 2.2rem;
             font-weight: 600;
-            margin-bottom: 50px;
+            margin-bottom: 15px;
             max-width: 80%;
             line-height: 1.2;
         }
 
-        /* --- Botón CTA con Hover Efecto HUD --- */
+        /* Caja para "Apto para todo público" */
+        .slogan-box {
+            display: inline-block;
+            border: 1px solid var(--text-muted);
+            padding: 8px 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.05);
+            margin-bottom: 40px;
+            width: fit-content;
+            color: #d1d5db;
+        }
+
+        /* --- Botón CTA --- */
         .btn-cta {
             display: inline-flex;
             align-items: center;
@@ -278,82 +293,85 @@
                 gap: 10px;
             }
             
-            /* Logo/Texto superior más pequeño */
             .logo { 
-                font-size: 1.1rem; 
+                font-size: 1.3rem; 
                 text-align: center;
-                line-height: 1.3;
+                line-height: 1.2;
             }
             .nav-line { display: none; }
             nav { gap: 15px; font-size: 0.95rem; }
 
-            main { flex-direction: column; padding: 20px; }
+            main { 
+                flex-direction: column; 
+                padding: 20px; 
+            }
+            
+            /* Contenedor Izquierdo alineado a la izquierda */
             .content-left {
                 width: 100%;
-                align-items: center;
-                text-align: center;
+                align-items: flex-start; /* Todo a la izquierda */
+                text-align: left;        /* Textos a la izquierda */
+                padding-right: 40%;      /* Deja un hueco del 40% a la derecha para el jugador */
                 margin-bottom: 5px;
             }
 
-            /* Título principal reducido */
-            h1 { font-size: 2.8rem; line-height: 1; margin-bottom: 12px; }
+            h1 { font-size: 2.8rem; line-height: 0.9; margin-bottom: 12px; }
             
-            /* Slogan actualizado */
-            .subtitle { font-size: 1rem; max-width: 100%; margin-bottom: 20px; line-height: 1.3;}
+            .subtitle { font-size: 1rem; max-width: 100%; margin-bottom: 10px; line-height: 1.3;}
+            
+            .slogan-box {
+                font-size: 0.8rem;
+                padding: 5px 8px;
+                margin-bottom: 20px;
+            }
 
             .btn-cta {
                 font-size: 0.85rem;
                 padding: 10px 20px;
-                letter-spacing: 1px;
             }
-            .btn-cta span { font-size: 1.1rem; margin-left: 10px;}
 
-            /* Contenedor total en móvil */
+            /* --- Contenedor Derecho (Ahora para el Slideshow de fondo) --- */
             .image-right {
                 position: relative;
                 width: 100%;
-                height: 500px; 
+                height: 250px; 
+                margin-top: 10px;
                 display: flex;
                 flex-direction: column;
             }
 
-            .hud-background { display: none; } /* Ocultamos el HUD base en móvil para no generar ruido */
+            .hud-background { display: none; }
 
-            /* 
-             * DIVISIÓN DEL ESPACIO:
-             * Jugador (mitad superior) 
-             */
+            /* JUGADOR ARRIBA A LA DERECHA (Junto a "MUCHO MÁS") */
             .player-img {
                 position: absolute;
-                height: 220px; /* Tamaño mucho menor y fijo */
+                top: 60px;   /* Alineado con la parte superior del texto */
+                right: 0;    /* Pegado a la derecha */
+                left: auto;
+                bottom: auto;
+                height: 190px; /* Tamaño adaptado al espacio */
                 width: auto;
-                left: 10%; 
-                bottom: 270px; /* Separado del fondo de abajo (nunca se cruzan) */
                 transform: none; 
             }
 
             .spinning-ball {
                 position: absolute;
-                top: 40px; /* Ajustado al nuevo tamaño del jugador */
-                left: 30%; 
-                width: 35px; /* Balón diminuto */
+                top: 85px;  /* Ajustar según tu foto */
+                right: 65px; /* Ajustar según tu foto */
+                left: auto;
+                width: 35px;
             }
 
-            /* 
-             * DIVISIÓN DEL ESPACIO:
-             * Imágenes de fondo (mitad inferior) 
-             */
+            /* SLIDESHOW (Debajo del botón) */
             .fifa-slideshow {
-                position: absolute;
+                position: relative; /* Ya no es absoluto, se acomoda abajo naturalmente */
                 width: 100%; 
-                height: 260px; /* Ocupa la parte de abajo de la pantalla */
+                height: 100%;
                 right: 0;
-                bottom: 0; /* Anclado al fondo */
-                top: auto;
-                transform: none;
-                /* Máscara más "cuadrada": Mantiene 65% del centro sólido, se desvanece rápido en los bordes */
-                -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 95%);
-                mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 65%, rgba(0,0,0,0) 95%);
+                bottom: 0; 
+                top: 0;
+                -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
+                mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
             }
 
             .badge {
@@ -369,8 +387,8 @@
 <body>
 
     <header>
-        <!-- Texto superior reducido y cambiado -->
-        <div class="logo">Pipe shows y eventos de futbol freestyle.</div>
+        <!-- Logo actualizado -->
+        <div class="logo">Futbol Freestyle Colombia<br>Pipe Shows</div>
         <nav>
             <div class="nav-line"></div>
             <a href="#">Inicio</a> <span>|</span>
@@ -381,11 +399,12 @@
 
     <main>
         <div class="content-left">
-            <!-- Título principal -->
             <h1>MUCHO MÁS<br>QUE FÚTBOL</h1>
             
-            <!-- Slogan actualizado -->
-            <p class="subtitle">Experiencias inolvidables que conectan y sorprenden<br>apto para todo publico y todas las edades.</p>
+            <p class="subtitle">Experiencias inolvidables que conectan y sorprenden.</p>
+            
+            <!-- Eslogan secundario en cuadrito -->
+            <div class="slogan-box">Apto para todo publico y edades.</div>
             
             <button class="btn-cta">
                 Cotizar Mi Evento <span>&#10142;</span>
