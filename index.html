@@ -291,61 +291,60 @@
 
             h1 { font-size: 3.5rem; line-height: 1; margin-bottom: 15px; }
             
-            /* Subtítulo actualizado */
-            .subtitle { font-size: 1.2rem; max-width: 100%; margin-bottom: 25px; }
+            /* Subtítulo con nuevo texto */
+            .subtitle { font-size: 1.1rem; max-width: 100%; margin-bottom: 25px; line-height: 1.3;}
 
-            /* Botón más pequeño en móvil */
+            /* Botón aún más pequeño */
             .btn-cta {
-                font-size: 1rem;
-                padding: 10px 25px;
+                font-size: 0.85rem;
+                padding: 10px 20px;
+                letter-spacing: 1px;
             }
-            .btn-cta span { font-size: 1.2rem; }
+            .btn-cta span { font-size: 1.1rem; margin-left: 10px;}
 
+            /* Contenedor más alto para que las imágenes respiren */
             .image-right {
                 position: relative;
                 width: 100%;
-                height: 400px;
+                height: 520px; /* Aumentado para dar espacio al subir al jugador */
                 display: flex;
                 justify-content: center;
             }
 
-            /* Marco gris eliminado en móvil */
             .hud-background {
                 width: 100%;
                 height: 100%;
                 right: 0;
                 bottom: 0;
-                border: none; /* Elimina el borde */
+                border: none; 
                 background-color: transparent;
             }
-            .hud-background::before {
-                display: none; /* Elimina la línea interna */
-            }
+            .hud-background::before { display: none; }
 
-            /* Slideshow horizontal y más pequeño */
+            /* Slideshow más grande, horizontal y visible */
             .fifa-slideshow {
-                width: 100%;
-                height: 220px; /* Formato apaisado/horizontal */
-                right: 0;
-                top: 50%;
-                transform: translateY(-50%); /* Centrado verticalmente detrás del jugador */
-                /* Difuminado elíptico (horizontal) en vez de circular */
-                -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%);
-                mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 20%, rgba(0,0,0,0) 70%);
+                width: 110%; /* Ligeramente más ancho que el marco */
+                height: 350px; /* Mucho más alto */
+                right: -5%;
+                top: 55%;
+                transform: translateY(-50%);
+                /* Máscara expandida: visible hasta el 40%, desvaneciéndose hasta el 75% */
+                -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 75%);
+                mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 75%);
             }
 
-            /* Jugador movido a la esquina izquierda */
+            /* Jugador subido */
             .player-img {
-                height: 95%;
-                left: 0; /* A la izquierda (quitamos el center) */
+                height: 90%; /* Ajuste proporcional */
+                left: 0;
                 transform: none; 
-                bottom: 0;
+                bottom: 15%; /* Ahora está más arriba, dejando la parte inferior para las fotos de fondo */
             }
 
-            /* Balón reajustado para acompañar al jugador a la izquierda */
+            /* Balón reajustado para acompañar la subida del jugador */
             .spinning-ball {
-                top: 22%;
-                left: 28%; /* Acercado a la nueva posición del jugador */
+                top: 8%; /* Subió junto con el jugador (ajusta esto si queda lejos del pie) */
+                left: 28%; 
                 width: 45px; 
             }
 
@@ -374,8 +373,8 @@
     <main>
         <div class="content-left">
             <h1>MUCHO MÁS<br>QUE FÚTBOL</h1>
-            <!-- Eslogan actualizado -->
-            <p class="subtitle">Una experiencia inolvidable que conecta y sorprende.</p>
+            
+            <p class="subtitle">Shows y eventos de fútbol freestyle<br>Una experiencia inolvidable que conecta y sorprende.</p>
             
             <button class="btn-cta">
                 Cotizar Mi Evento <span>&#10142;</span>
