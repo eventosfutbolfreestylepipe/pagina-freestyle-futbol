@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pipe Fútbol - Eventos Masivos</title>
+    <title>Pipe Fútbol Freestyle - Eventos Masivos</title>
     <!-- Fuentes estilo Tech / Sport -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Teko:wght@600&display=swap" rel="stylesheet">
     
@@ -30,6 +30,8 @@
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* --- Menú Minimalista / Estilo Game --- */
@@ -39,13 +41,14 @@
             align-items: center;
             padding: 30px 60px;
             position: relative;
-            z-index: 10;
+            z-index: 20;
         }
 
         .logo {
             font-size: 2rem;
             font-weight: 700;
             letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         nav {
@@ -81,7 +84,7 @@
         main {
             display: flex;
             padding: 40px 60px;
-            min-height: 80vh;
+            flex-grow: 1;
             position: relative;
         }
 
@@ -184,9 +187,7 @@
             bottom: 20px;
             width: 80%;
             height: 70%;
-            /* Borde sutil */
             border: 2px solid rgba(255,255,255,0.05);
-            /* Corte diagonal en la esquina superior izquierda */
             clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
             background-color: rgba(255, 255, 255, 0.02);
             z-index: 3;
@@ -209,9 +210,8 @@
             right: 5%;  
             width: 500px;
             height: 350px;
-            z-index: 4; /* Sobre el fondo HUD, detrás del jugador */
+            z-index: 4; 
             
-            /* Difuminado de los bordes hacia el fondo */
             -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
             mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
             
@@ -227,17 +227,13 @@
             object-fit: cover; 
             opacity: 0;
             filter: grayscale(20%) contrast(110%);
-            
-            /* Animación: 6 segundos en total (2s por foto x 3 fotos) */
             animation: fifaCrossfade 6s infinite;
         }
 
-        /* Tiempos de aparición */
         .slide-1 { animation-delay: 0s; }
         .slide-2 { animation-delay: 2s; }
         .slide-3 { animation-delay: 4s; }
 
-        /* La animación de fundido */
         @keyframes fifaCrossfade {
             0%   { opacity: 0; }
             10%  { opacity: 0.6; }
@@ -246,24 +242,23 @@
             100% { opacity: 0; }
         }
 
-    /* Jugador de Fútbol principal (Movido a la izquierda) */
+        /* Jugador de Fútbol principal */
         .player-img {
             position: absolute;
-            bottom: 15%; /* Ajusta para subir o bajar tu foto */
-            left: -5%;   /* Lo mueve a la izquierda, pegado al texto */
-            height: 70%; /* Tamaño basado en el recuadro que dibujaste */
-            z-index: 15; /* Asegura que quede por encima de todo */
+            bottom: 15%; 
+            left: -5%;   
+            height: 70%; 
+            z-index: 15; 
             filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
         }
 
         /* --- APNG Spinning Ball (Superpuesto) --- */
         .spinning-ball {
             position: absolute;
-            /* ⚠️ AJUSTA ESTOS DOS VALORES para que coincida exactamente con tu pie/balón */
             top: 35%;  
             left: 15%; 
-            width: 70px; /* Ajusta el tamaño para tapar el balón de tu foto original */
-            z-index: 16; /* Por encima del jugador */
+            width: 70px; 
+            z-index: 16; 
             animation: spin 3s linear infinite;
         }
 
@@ -272,19 +267,109 @@
             to { transform: rotate(360deg); }
         }
 
-        /* Responsive básico */
+        /* =========================================
+           ADAPTACIÓN PARA CELULARES Y TABLETS
+           ========================================= */
         @media (max-width: 1024px) {
             h1 { font-size: 5rem; }
             .subtitle { font-size: 1.8rem; }
             .content-left { width: 60%; }
             .fifa-slideshow { width: 350px; height: 250px; }
         }
+
+        @media (max-width: 768px) {
+            /* 1. Encabezado en columna */
+            header {
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+            }
+            .logo { 
+                font-size: 1.8rem; 
+                text-align: center;
+            }
+            .nav-line { display: none; /* Ocultamos la línea decorativa en móvil */ }
+            nav { gap: 15px; font-size: 0.95rem; }
+
+            /* 2. Cuerpo Principal apilado (Texto arriba, imagen abajo) */
+            main {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .content-left {
+                width: 100%; /* Toma todo el ancho */
+                align-items: center; /* Centra el botón */
+                text-align: center; /* Centra los textos */
+                margin-bottom: 20px;
+            }
+
+            /* 3. Fuentes más pequeñas para que entren bien */
+            h1 {
+                font-size: 3.5rem; /* Fuente drásticamente reducida */
+                line-height: 1;
+                margin-bottom: 15px;
+            }
+            .subtitle {
+                font-size: 1.2rem;
+                max-width: 100%;
+                margin-bottom: 30px;
+            }
+
+            /* 4. Contenedor de imágenes reconfigurado */
+            .image-right {
+                position: relative; /* Ya no es absoluto, se pone debajo del texto */
+                width: 100%;
+                height: 450px; /* Le damos un alto fijo para el celular */
+                display: flex;
+                justify-content: center;
+            }
+
+            /* 5. Ajuste del HUD y Slideshow en celular */
+            .hud-background {
+                width: 90%;
+                height: 100%;
+                right: auto;
+                bottom: 0;
+                clip-path: polygon(15% 0, 100% 0, 100% 100%, 0 100%, 0 25%); /* Corte más suave en móvil */
+            }
+            .fifa-slideshow {
+                width: 100%;
+                height: 100%;
+                right: 0;
+                bottom: 0;
+            }
+
+            /* 6. Centrar el jugador y ajustar balón en móvil */
+            .player-img {
+                height: 100%; /* Aprovecha la altura del contenedor */
+                left: 50%;
+                transform: translateX(-50%); /* Centrado perfecto */
+                bottom: 0;
+            }
+            .spinning-ball {
+                /* ATENCIÓN: Puede que necesites ajustar un poco el top/left aquí
+                   específicamente para cómo se vea en el celular */
+                top: 25%;
+                left: 65%; 
+                width: 50px; /* Balón un poco más pequeño en móvil */
+            }
+
+            /* 7. Mover el Badge al final para que no estorbe */
+            .badge {
+                position: relative; /* Sale del flujo absoluto */
+                bottom: auto; left: auto;
+                justify-content: center;
+                padding-bottom: 30px;
+                margin-top: 10px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">Pipe Fútbol</div>
+        <!-- Actualizado a Pipe Fútbol Freestyle -->
+        <div class="logo">Pipe Fútbol Freestyle</div>
         <nav>
             <div class="nav-line"></div>
             <a href="#">Inicio</a> <span>|</span>
@@ -309,14 +394,14 @@
 
             <!-- Slideshow estilo FIFA en la esquina -->
             <div class="fifa-slideshow">
-                <!-- Reemplaza el src con las rutas de tus fotos reales -->
                 <img src="evento1.jpg" class="slide slide-1">
-<img src="evento2.jpg" class="slide slide-2">
-<img src="evento3.jpg" class="slide slide-3">
+                <img src="evento2.jpg" class="slide slide-2">
+                <img src="evento3.jpg" class="slide slide-3">
             </div>
             
-            <!-- Jugador principal (Asegúrate de que tenga fondo transparente PNG) -->
-<img src="mi-foto.png" alt="Pipe" class="player-img">            
+            <!-- Jugador principal -->
+            <img src="mi-foto.png" alt="Pipe" class="player-img">            
+            
             <!-- Balón giratorio -->
             <img src="https://via.placeholder.com/100x100/ffffff/000000?text=Balon" alt="Balón girando" class="spinning-ball">
         </div>
