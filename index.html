@@ -304,19 +304,20 @@
             main { 
                 flex-direction: column; 
                 padding: 20px; 
-                position: relative; 
+                position: relative; /* Clave para posicionar al jugador absoluto a toda la vista principal */
             }
             
+            /* Contenedor Izquierdo alineado a la izquierda */
             .content-left {
                 width: 100%;
-                align-items: flex-start;
+                align-items: flex-start; /* Textos a la izquierda */
                 text-align: left;
                 margin-bottom: 5px;
             }
 
-            /* Hacemos un poco más de espacio (50%) para que la imagen enorme no tape los textos */
+            /* Restringimos el ancho de los textos para que no choquen con la foto del jugador a la derecha */
             h1, .subtitle, .slogan-box {
-                max-width: 50%; 
+                max-width: 55%; 
             }
 
             h1 { font-size: 2.8rem; line-height: 0.9; margin-bottom: 12px; }
@@ -329,16 +330,18 @@
                 margin-bottom: 25px;
             }
 
+            /* BOTÓN CENTRADO Y PEQUEÑO */
             .btn-cta {
-                align-self: center; 
+                align-self: center; /* Override para que solo el botón se centre en la pantalla */
                 font-size: 0.85rem;
                 padding: 10px 20px;
                 margin-top: 10px;
             }
             .btn-cta span { font-size: 1rem; margin-left: 8px;}
 
+            /* Contenedor Derecho (Desacoplado para no estorbar) */
             .image-right {
-                position: static; 
+                position: static; /* Permite que el jugador y el balón escapen al contenedor main */
                 width: 100%;
                 margin-top: 20px;
                 display: flex;
@@ -347,27 +350,28 @@
 
             .hud-background { display: none; }
 
-            /* JUGADOR: Ampliado para ocupar todo el recuadro verde que marcaste */
+            /* JUGADOR: Arriba a la derecha, enorme, al lado del texto */
             .player-img {
                 position: absolute;
-                top: 10px;     /* Sube casi al ras de "MUCHO MÁS" */
-                right: 10px;  /* Se pega al borde derecho */
+                top: 5px;   /* Pegado al inicio del área principal */
+                right: 5px;
                 left: auto;
                 bottom: auto;
-                height: 400px; /* ¡Tamaño gigante para llenar el espacio! */
+                height: 500px; /* Tamaño muy ampliado */
                 width: auto;
                 transform: none; 
             }
 
-            /* BALÓN: Ajustado en tamaño y posición a la nueva escala del jugador */
+            /* BALÓN: Acompañando al jugador */
             .spinning-ball {
                 position: absolute;
-                top: 55px;    
-                right: 110px; 
+                top: 50px;  /* Ajusta si queda desfasado */
+                right: 90px; /* Ajusta si queda desfasado */
                 left: auto;
-                width: 55px;   /* Balón más grande */
+                width: 45px;
             }
 
+            /* SLIDESHOW (Fotos difuminadas solas en la parte inferior) */
             .fifa-slideshow {
                 position: relative; 
                 width: 100%; 
