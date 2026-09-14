@@ -71,25 +71,26 @@
         nav {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px; /* Espacio ligeramente reducido */
         }
 
         .nav-line {
-            width: 150px;
+            width: 100px;
             height: 1px;
             background-color: var(--text-muted);
-            margin-right: 20px;
+            margin-right: 15px;
         }
 
         nav a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 1.1rem;
+            font-size: 0.95rem; /* Fuente más pequeña */
             transition: all 0.3s;
             position: relative;
             padding-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
+            white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
         }
 
         /* Efecto línea inferior para enlaces normales */
@@ -115,9 +116,13 @@
             width: 100%;
         }
 
+        /* Puntico separador */
         nav span {
             color: var(--text-muted);
-            opacity: 0.3;
+            opacity: 0.5;
+            font-size: 1.2rem;
+            display: inline-block;
+            transform: translateY(-2px); /* Centra el puntito verticalmente */
         }
 
         /* --- Botón "Cotizar" Estilo Imagen --- */
@@ -125,10 +130,10 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 8px 18px;
-            margin-left: 15px;
+            padding: 6px 14px;
+            margin-left: 5px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 0.95rem; /* Fuente ajustada */
             position: relative;
         }
 
@@ -183,7 +188,6 @@
             z-index: 20;
         }
 
-        /* Título reducido */
         h1 {
             font-family: 'Teko', sans-serif;
             font-size: 5.5rem; 
@@ -201,19 +205,18 @@
             line-height: 1.2;
         }
 
+        /* Azul Neón aplicado solo al texto y alineado correctamente */
         .text-neon {
             color: var(--neon-blue);
             font-weight: 700;
             text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
             font-size: 1.8rem;
-            display: block;
-            margin-top: 5px;
         }
 
         /* --- Cuadros de Servicios --- */
         .services-container {
             width: 100%;
-            max-width: 600px; /* Un poco más de espacio */
+            max-width: 600px; 
         }
 
         .services-grid {
@@ -225,7 +228,7 @@
             flex: 1;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px 10px; /* Agrandados por dentro */
+            padding: 15px 10px;
             text-decoration: none;
             color: var(--text-main);
             text-align: center;
@@ -261,7 +264,7 @@
         }
 
         .card-text {
-            font-size: 1.05rem; /* Fuente aumentada */
+            font-size: 1.05rem; 
             font-weight: 700;
             line-height: 1.2;
         }
@@ -409,15 +412,28 @@
             .nav-line { display: none; }
             
             nav { 
-                flex-wrap: wrap; /* Permite que los enlaces bajen de línea si no caben */
+                flex-wrap: nowrap; /* Fuerza a que todo quede en una línea */
                 justify-content: center;
-                gap: 10px; 
-                font-size: 0.9rem; 
+                gap: 6px; /* Reduce el espacio entre enlaces */
+                width: 100%;
             }
 
-            .btn-cotizar { margin-left: 0; padding: 6px 12px; font-size: 0.9rem; }
-            
-            nav span { display: none; } /* Ocultamos las barritas en móvil para ganar espacio */
+            nav a { 
+                font-size: 0.75rem; /* Letra ultra compacta para celular */
+            }
+
+            /* Los puntitos se muestran en celular */
+            nav span { 
+                display: inline-block; 
+                font-size: 0.8rem; 
+                margin: 0;
+            }
+
+            .btn-cotizar { 
+                margin-left: 0; 
+                padding: 4px 8px; 
+                font-size: 0.75rem; 
+            }
 
             main { 
                 flex-direction: column; 
@@ -434,7 +450,7 @@
             h1, .subtitle { max-width: 55%; }
             h1 { font-size: 2.5rem; margin-bottom: 10px; }
             .subtitle { font-size: 1rem; margin-bottom: 15px; line-height: 1.3;}
-            .text-neon { font-size: 1rem; margin-top: 2px;}
+            .text-neon { font-size: 1.1rem; margin-top: 2px; }
             
             /* Ajuste de los 4 cuadros horizontales en móvil */
             .services-container {
@@ -444,16 +460,16 @@
                 position: relative;
             }
             
-            .services-grid { gap: 6px; }
+            .services-grid { gap: 5px; } /* Ajuste del espacio entre cuadros */
 
             .service-card {
                 padding: 10px 4px;
                 flex: 1; 
-                min-height: 95px; /* Altura suficiente para el texto extra */
+                min-height: 95px;
             }
 
             .card-text {
-                font-size: 0.75rem; /* Fuente agrandada en móvil respecto a la versión anterior */
+                font-size: 0.7rem; 
             }
 
             .image-right {
@@ -468,11 +484,11 @@
 
             .player-img {
                 position: absolute;
-                top: 30px;   
+                top: 40px;   
                 right: -30px;
                 left: auto;
                 bottom: auto;
-                height: 420px; 
+                height: 400px; 
                 width: auto;
                 z-index: 15;
             }
@@ -514,9 +530,9 @@
         </div>
         <nav>
             <div class="nav-line"></div>
-            <a href="#">Inicio</a> <span>|</span>
-            <a href="#">Elige tu Show</a> <span>|</span>
-            <a href="#">Experiencia</a>
+            <a href="#">Inicio</a> <span>&bull;</span>
+            <a href="#">Elige tu Show</a> <span>&bull;</span>
+            <a href="#">Experiencia</a> <span>&bull;</span>
             <a href="#cotizar" class="btn-cotizar">Cotizar</a>
         </nav>
     </header>
@@ -526,8 +542,8 @@
             <h1>MUCHO MÁS<br>QUE FÚTBOL</h1>
             
             <p class="subtitle">
-                Conecta y sorprende con 
-                <span class="text-neon">"show de futbol freestyle para":</span>
+                Conecta y sorprende con <br>
+                <span class="text-neon">Show de futbol freestyle</span> para:
             </p>
             
             <div class="services-container">
