@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pipe Shows - Futbol Freestyle Colombia</title>
     <!-- Fuentes estilo Tech / Sport -->
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Teko:wght@600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Teko:wght@500;600&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-dark: #1e242c;
+            --bg-dark: #101419; /* Fondo más oscuro */
             --text-main: #ffffff;
             --text-muted: #a0aec0;
             --accent-hud: #4a5568;
             --glow-hud: rgba(138, 180, 248, 0.4);
+            --neon-blue: #00f0ff; /* Color azul brillante clarito */
         }
 
         * {
@@ -23,7 +24,8 @@
         }
 
         body {
-            background: radial-gradient(circle at 30% 50%, #29313a 0%, #1e242c 80%);
+            /* Fondo radial más oscuro */
+            background: radial-gradient(circle at 30% 50%, #1a222b 0%, var(--bg-dark) 80%);
             background-color: var(--bg-dark);
             color: var(--text-main);
             font-family: 'Rajdhani', sans-serif;
@@ -31,6 +33,23 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            position: relative;
+        }
+
+        /* Líneas geométricas de fondo (Textura) */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50px;
+            width: 300px;
+            height: 100%;
+            background-image: 
+                linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.02) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.02) 75%, rgba(255, 255, 255, 0.02) 76%, transparent 77%, transparent),
+                linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.02) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.02) 75%, rgba(255, 255, 255, 0.02) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            z-index: 0;
+            pointer-events: none;
         }
 
         /* --- Menú Minimalista / Estilo Game --- */
@@ -43,12 +62,28 @@
             z-index: 20;
         }
 
+        /* Mejoras en el Logo */
         .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+            line-height: 0.9;
+        }
+        
+        .logo-sub {
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
             text-transform: uppercase;
-            line-height: 1.1;
+        }
+
+        .logo-main {
+            font-family: 'Teko', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--neon-blue);
+            text-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         nav {
@@ -64,11 +99,27 @@
             margin-right: 20px;
         }
 
+        /* Enlaces con Neón inferior */
         nav a {
             color: var(--text-muted);
             text-decoration: none;
             font-size: 1.1rem;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            position: relative;
+            padding-bottom: 5px;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--neon-blue);
+            box-shadow: 0 0 8px var(--neon-blue);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
 
         nav a:hover {
@@ -76,8 +127,13 @@
             text-shadow: 0 0 8px var(--text-main);
         }
 
+        nav a:hover::after {
+            width: 100%;
+        }
+
         nav span {
             color: var(--text-muted);
+            opacity: 0.3;
         }
 
         /* --- Hero Section --- */
@@ -86,6 +142,7 @@
             padding: 40px 60px;
             flex-grow: 1;
             position: relative;
+            z-index: 10;
         }
 
         .content-left {
@@ -93,7 +150,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            z-index: 10;
+            z-index: 20; /* Elevado para asegurar clics */
         }
 
         h1 {
@@ -102,84 +159,93 @@
             line-height: 0.9;
             text-transform: uppercase;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         .subtitle {
             font-size: 2.2rem;
             font-weight: 600;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
             max-width: 80%;
             line-height: 1.2;
         }
 
-        /* Caja para "Apto para todo público" */
-        .slogan-box {
-            display: inline-block;
-            border: 1px solid var(--text-muted);
-            padding: 8px 15px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            margin-bottom: 40px;
-            width: fit-content;
-            color: #d1d5db;
+        /* --- Cuadros de Servicios (Nuevos) --- */
+        .services-container {
+            width: 100%;
+            max-width: 550px;
+            margin-bottom: 20px;
         }
 
-        /* --- Botón CTA --- */
-        .btn-cta {
-            display: inline-flex;
-            align-items: center;
-            background: linear-gradient(90deg, #424e5a 0%, #2a343d 100%);
-            color: white;
-            font-family: 'Rajdhani', sans-serif;
-            font-weight: 700;
+        .services-title {
             font-size: 1.2rem;
-            padding: 15px 40px;
+            color: var(--neon-blue);
+            margin-bottom: 12px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            border: 2px solid #6b7a8f;
-            cursor: pointer;
-            width: fit-content;
-            clip-path: polygon(15px 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%, 0 15px);
-            transition: all 0.3s ease;
-            position: relative;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
         }
 
-        .btn-cta:hover {
-            background: linear-gradient(90deg, #5c6c7d 0%, #3a4752 100%);
-            border-color: #a0aec0;
-            box-shadow: 0 0 15px var(--glow-hud);
-            transform: translateY(-2px);
-        }
-
-        .btn-cta span {
-            margin-left: 15px;
-            font-size: 1.5rem;
-        }
-
-        /* --- Mini Logo Authenticity Badge --- */
-        .badge {
-            position: absolute;
-            bottom: 40px;
-            left: 60px;
+        .services-grid {
             display: flex;
+            gap: 12px;
+        }
+
+        .service-card {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 12px 8px;
+            text-decoration: none;
+            color: var(--text-main);
+            text-align: center;
+            border-radius: 4px;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            gap: 15px;
-            z-index: 10;
+            position: relative;
+            overflow: hidden;
         }
 
-        .badge img {
-            width: 60px;
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-            border: 1px solid var(--text-muted);
-            padding: 5px;
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 2px; height: 100%;
+            background: var(--neon-blue);
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .badge p {
-            font-size: 0.9rem;
+        .service-card:hover {
+            background: rgba(0, 240, 255, 0.05);
+            border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.15);
+            transform: translateY(-3px);
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .card-icon {
+            font-family: 'Teko', sans-serif;
+            font-size: 1.8rem;
             color: var(--text-muted);
+            line-height: 1;
+            margin-bottom: 5px;
+            transition: color 0.3s;
+        }
+
+        .service-card:hover .card-icon {
+            color: var(--neon-blue);
+        }
+
+        .card-text {
+            font-size: 0.95rem;
+            font-weight: 700;
             line-height: 1.2;
         }
 
@@ -199,9 +265,9 @@
             bottom: 20px;
             width: 80%;
             height: 70%;
-            border: 2px solid rgba(255,255,255,0.05);
+            border: 2px solid rgba(255,255,255,0.03);
             clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
-            background-color: rgba(255, 255, 255, 0.02);
+            background-color: rgba(255, 255, 255, 0.01);
             z-index: 3;
         }
 
@@ -209,7 +275,7 @@
             content: '';
             position: absolute;
             top: -2px; left: -2px; right: -2px; bottom: -2px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid rgba(0,240,255,0.2); /* Detalle neón en HUD */
             clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
             pointer-events: none;
         }
@@ -258,7 +324,7 @@
             left: -5%;   
             height: 70%; 
             z-index: 15; 
-            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.8));
+            filter: drop-shadow(0 20px 30px rgba(0,0,0,0.9));
         }
 
         /* APNG Spinning Ball */
@@ -274,6 +340,30 @@
         @keyframes spin {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
+        }
+
+        /* --- Mini Logo Authenticity Badge --- */
+        .badge {
+            position: absolute;
+            bottom: 40px;
+            left: 60px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            z-index: 10;
+        }
+
+        .badge img {
+            width: 60px;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            padding: 5px;
+        }
+
+        .badge p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.2;
         }
 
         /* =========================================
@@ -294,54 +384,68 @@
             }
             
             .logo { 
-                font-size: 1.3rem; 
+                align-items: center;
                 text-align: center;
-                line-height: 1.2;
             }
+            .logo-sub { font-size: 0.8rem; }
+            .logo-main { font-size: 2rem; }
+
             .nav-line { display: none; }
             nav { gap: 15px; font-size: 0.95rem; }
 
             main { 
                 flex-direction: column; 
                 padding: 20px; 
-                position: relative; /* Clave para posicionar al jugador absoluto a toda la vista principal */
             }
             
-            /* Contenedor Izquierdo alineado a la izquierda */
             .content-left {
                 width: 100%;
-                align-items: flex-start; /* Textos a la izquierda */
+                align-items: flex-start; 
                 text-align: left;
                 margin-bottom: 5px;
             }
 
-            /* Restringimos el ancho de los textos para que no choquen con la foto del jugador a la derecha */
-            h1, .subtitle, .slogan-box {
-                max-width: 55%; 
+            h1, .subtitle {
+                max-width: 55%; /* Espacio para el jugador a la derecha */
             }
 
-            h1 { font-size: 2.8rem; line-height: 0.9; margin-bottom: 12px; }
+            h1 { font-size: 3rem; margin-bottom: 12px; }
+            .subtitle { font-size: 1rem; margin-bottom: 15px; line-height: 1.3;}
             
-            .subtitle { font-size: 1rem; margin-bottom: 10px; line-height: 1.3;}
-            
-            .slogan-box {
-                font-size: 0.8rem;
-                padding: 5px 8px;
-                margin-bottom: 25px;
-            }
-
-            /* BOTÓN CENTRADO Y PEQUEÑO */
-            .btn-cta {
-                align-self: center; /* Override para que solo el botón se centre en la pantalla */
-                font-size: 0.85rem;
-                padding: 10px 20px;
+            /* Ajuste de los 4 cuadros horizontales en móvil */
+            .services-container {
+                max-width: 100%; /* Toma todo el ancho disponible ahora */
                 margin-top: 10px;
+                z-index: 30; /* Clave para que se pueda clickear por encima del jugador */
+                position: relative;
             }
-            .btn-cta span { font-size: 1rem; margin-left: 8px;}
+            
+            .services-title {
+                font-size: 0.9rem;
+            }
 
-            /* Contenedor Derecho (Desacoplado para no estorbar) */
+            .services-grid {
+                gap: 6px; /* Espacio reducido entre cuadros */
+            }
+
+            .service-card {
+                padding: 8px 4px;
+                flex: 1; /* Esto hace que los 4 quepan equitativamente a lo ancho (Como dibujado en edited-image.png) */
+                min-height: 85px;
+                justify-content: center;
+            }
+
+            .card-icon {
+                font-size: 1.4rem;
+                margin-bottom: 3px;
+            }
+
+            .card-text {
+                font-size: 0.65rem; /* Letra pequeña para que entren todos en la fila horizontal */
+            }
+
             .image-right {
-                position: static; /* Permite que el jugador y el balón escapen al contenedor main */
+                position: static; 
                 width: 100%;
                 margin-top: 20px;
                 display: flex;
@@ -350,36 +454,30 @@
 
             .hud-background { display: none; }
 
-            /* JUGADOR: Arriba a la derecha, enorme, al lado del texto */
             .player-img {
                 position: absolute;
-                top: -75px;   /* Pegado al inicio del área principal */
-                right: -10px;
+                top: 0px;   
+                right: -30px;
                 left: auto;
                 bottom: auto;
-                height: 400; /* Tamaño muy ampliado */
-                width: 100;
-                transform: none; 
+                height: 450px; 
+                width: auto;
+                z-index: 15; /* El z-index de los cuadros (30) es mayor para que sean clickeables */
             }
 
-            /* BALÓN: Acompañando al jugador */
             .spinning-ball {
                 position: absolute;
-                top: 50px;  /* Ajusta si queda desfasado */
-                right: 90px; /* Ajusta si queda desfasado */
+                top: 80px;  
+                right: 90px; 
                 left: auto;
                 width: 45px;
             }
 
-            /* SLIDESHOW (Fotos difuminadas solas en la parte inferior) */
             .fifa-slideshow {
                 position: relative; 
                 width: 100%; 
                 height: 220px;
-                right: 0;
-                bottom: 0; 
-                top: 0;
-                left: 0;
+                right: 0; bottom: 0; top: 0; left: 0;
                 margin-top: 15px;
                 -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
                 mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
@@ -398,7 +496,10 @@
 <body>
 
     <header>
-        <div class="logo">Futbol Freestyle Colombia<br>Pipe Shows</div>
+        <div class="logo">
+            <span class="logo-sub">Futbol Freestyle Colombia</span>
+            <span class="logo-main">Pipe Shows</span>
+        </div>
         <nav>
             <div class="nav-line"></div>
             <a href="#">Inicio</a> <span>|</span>
@@ -413,11 +514,34 @@
             
             <p class="subtitle">Experiencias inolvidables que conectan y sorprenden.</p>
             
-            <div class="slogan-box">Apto para todo publico y edades.</div>
+            <!-- Aquí reemplazamos por los 4 mini cuadros horizontales -->
+            <div class="services-container">
+                <h3 class="services-title">Lleva tu show de fútbol a:</h3>
+                <div class="services-grid">
+                    
+                    <a href="#empresas" class="service-card">
+                        <span class="card-icon">01</span>
+                        <span class="card-text">Empresas</span>
+                    </a>
+                    
+                    <a href="#activaciones" class="service-card">
+                        <span class="card-icon">02</span>
+                        <span class="card-text">Activaciones de marca</span>
+                    </a>
+                    
+                    <a href="#cumpleanos" class="service-card">
+                        <span class="card-icon">03</span>
+                        <span class="card-text">Cumpleaños y eventos</span>
+                    </a>
+                    
+                    <a href="#colegios" class="service-card">
+                        <span class="card-icon">04</span>
+                        <span class="card-text">Colegios e institutos</span>
+                    </a>
+
+                </div>
+            </div>
             
-            <button class="btn-cta">
-                Cotizar Mi Evento <span>&#10142;</span>
-            </button>
         </div>
 
         <div class="image-right">
