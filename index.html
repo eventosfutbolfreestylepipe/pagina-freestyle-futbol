@@ -381,11 +381,14 @@
             z-index: 10;
         }
 
-        .badge img {
-            width: 60px;
+.badge .badge-video {
+            width: 70px; 
+            height: 70px;
+            object-fit: cover; 
             clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
             border: 1px solid rgba(0, 240, 255, 0.4);
             padding: 5px;
+            mix-blend-mode: screen; /* Esto borra el fondo negro */
         }
 
         .badge p {
@@ -605,8 +608,8 @@
         </div>
     </main>
 
-    <div class="badge">
-        <img src="https://via.placeholder.com/60x60/333/fff?text=LOGO" alt="Pipe Logo">
+  <div class="badge">
+        <video src="siluetalogo.mp4" autoplay loop muted playsinline class="badge-video"></video>
         <p>Mini Logo<br>Authenticity Badge</p>
     </div>
 
