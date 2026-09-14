@@ -9,12 +9,12 @@
     
     <style>
         :root {
-            --bg-dark: #101419; /* Fondo más oscuro */
+            --bg-dark: #101419;
             --text-main: #ffffff;
             --text-muted: #a0aec0;
             --accent-hud: #4a5568;
             --glow-hud: rgba(138, 180, 248, 0.4);
-            --neon-blue: #00f0ff; /* Color azul brillante clarito */
+            --neon-blue: #00f0ff;
         }
 
         * {
@@ -24,7 +24,6 @@
         }
 
         body {
-            /* Fondo radial más oscuro */
             background: radial-gradient(circle at 30% 50%, #1a222b 0%, var(--bg-dark) 80%);
             background-color: var(--bg-dark);
             color: var(--text-main);
@@ -34,22 +33,6 @@
             display: flex;
             flex-direction: column;
             position: relative;
-        }
-
-        /* Líneas geométricas de fondo (Textura) */
-        body::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -50px;
-            width: 300px;
-            height: 100%;
-            background-image: 
-                linear-gradient(0deg, transparent 24%, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.02) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.02) 75%, rgba(255, 255, 255, 0.02) 76%, transparent 77%, transparent),
-                linear-gradient(90deg, transparent 24%, rgba(255, 255, 255, 0.02) 25%, rgba(255, 255, 255, 0.02) 26%, transparent 27%, transparent 74%, rgba(255, 255, 255, 0.02) 75%, rgba(255, 255, 255, 0.02) 76%, transparent 77%, transparent);
-            background-size: 50px 50px;
-            z-index: 0;
-            pointer-events: none;
         }
 
         /* --- Menú Minimalista / Estilo Game --- */
@@ -62,7 +45,6 @@
             z-index: 20;
         }
 
-        /* Mejoras en el Logo */
         .logo {
             display: flex;
             flex-direction: column;
@@ -99,7 +81,6 @@
             margin-right: 20px;
         }
 
-        /* Enlaces con Neón inferior */
         nav a {
             color: var(--text-muted);
             text-decoration: none;
@@ -107,9 +88,12 @@
             transition: all 0.3s;
             position: relative;
             padding-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        nav a::after {
+        /* Efecto línea inferior para enlaces normales */
+        nav a:not(.btn-cotizar)::after {
             content: '';
             position: absolute;
             left: 50%;
@@ -122,12 +106,12 @@
             transform: translateX(-50%);
         }
 
-        nav a:hover {
+        nav a:not(.btn-cotizar):hover {
             color: var(--text-main);
             text-shadow: 0 0 8px var(--text-main);
         }
 
-        nav a:hover::after {
+        nav a:not(.btn-cotizar):hover::after {
             width: 100%;
         }
 
@@ -135,6 +119,52 @@
             color: var(--text-muted);
             opacity: 0.3;
         }
+
+        /* --- Botón "Cotizar" Estilo Imagen --- */
+        .btn-cotizar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8px 18px;
+            margin-left: 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .btn-cotizar::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 70%; height: 75%;
+            border-top: 2px solid var(--text-muted);
+            border-right: 2px solid var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .btn-cotizar::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 70%; height: 75%;
+            border-bottom: 2px solid var(--text-muted);
+            border-left: 2px solid var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .btn-cotizar:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+        }
+
+        .btn-cotizar:hover::before, 
+        .btn-cotizar:hover::after {
+            border-color: var(--neon-blue);
+            width: 100%; 
+            height: 100%;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2) inset;
+        }
+
 
         /* --- Hero Section --- */
         main {
@@ -150,40 +180,40 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            z-index: 20; /* Elevado para asegurar clics */
+            z-index: 20;
         }
 
+        /* Título reducido */
         h1 {
             font-family: 'Teko', sans-serif;
-            font-size: 7rem;
+            font-size: 5.5rem; 
             line-height: 0.9;
             text-transform: uppercase;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         .subtitle {
-            font-size: 2.2rem;
-            font-weight: 600;
+            font-size: 1.6rem;
+            font-weight: 500;
             margin-bottom: 25px;
-            max-width: 80%;
+            max-width: 90%;
             line-height: 1.2;
         }
 
-        /* --- Cuadros de Servicios (Nuevos) --- */
-        .services-container {
-            width: 100%;
-            max-width: 550px;
-            margin-bottom: 20px;
+        .text-neon {
+            color: var(--neon-blue);
+            font-weight: 700;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+            font-size: 1.8rem;
+            display: block;
+            margin-top: 5px;
         }
 
-        .services-title {
-            font-size: 1.2rem;
-            color: var(--neon-blue);
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
+        /* --- Cuadros de Servicios --- */
+        .services-container {
+            width: 100%;
+            max-width: 600px; /* Un poco más de espacio */
         }
 
         .services-grid {
@@ -195,7 +225,7 @@
             flex: 1;
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 12px 8px;
+            padding: 15px 10px; /* Agrandados por dentro */
             text-decoration: none;
             color: var(--text-main);
             text-align: center;
@@ -203,11 +233,11 @@
             backdrop-filter: blur(5px);
             transition: all 0.3s ease;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             position: relative;
             overflow: hidden;
+            min-height: 80px;
         }
 
         .service-card::before {
@@ -230,24 +260,12 @@
             opacity: 1;
         }
 
-        .card-icon {
-            font-family: 'Teko', sans-serif;
-            font-size: 1.8rem;
-            color: var(--text-muted);
-            line-height: 1;
-            margin-bottom: 5px;
-            transition: color 0.3s;
-        }
-
-        .service-card:hover .card-icon {
-            color: var(--neon-blue);
-        }
-
         .card-text {
-            font-size: 0.95rem;
+            font-size: 1.05rem; /* Fuente aumentada */
             font-weight: 700;
             line-height: 1.2;
         }
+
 
         /* --- Contenedor de Imagen y HUD (Lado Derecho) --- */
         .image-right {
@@ -275,12 +293,12 @@
             content: '';
             position: absolute;
             top: -2px; left: -2px; right: -2px; bottom: -2px;
-            border: 1px solid rgba(0,240,255,0.2); /* Detalle neón en HUD */
+            border: 1px solid rgba(0,240,255,0.2);
             clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
             pointer-events: none;
         }
 
-        /* --- Slideshow Estilo Menú FIFA (Escritorio) --- */
+        /* --- Slideshow Estilo Menú FIFA --- */
         .fifa-slideshow {
             position: absolute;
             bottom: 5%; 
@@ -295,10 +313,7 @@
 
         .slide {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             object-fit: cover; 
             opacity: 0;
             filter: grayscale(20%) contrast(110%);
@@ -342,7 +357,7 @@
             to { transform: rotate(360deg); }
         }
 
-        /* --- Mini Logo Authenticity Badge --- */
+        /* --- Mini Logo --- */
         .badge {
             position: absolute;
             bottom: 40px;
@@ -370,8 +385,9 @@
            ADAPTACIÓN PARA CELULARES Y TABLETS
            ========================================= */
         @media (max-width: 1024px) {
-            h1 { font-size: 5rem; }
-            .subtitle { font-size: 1.8rem; }
+            h1 { font-size: 4rem; }
+            .subtitle { font-size: 1.4rem; }
+            .text-neon { font-size: 1.5rem; }
             .content-left { width: 60%; }
             .fifa-slideshow { width: 350px; height: 250px; }
         }
@@ -380,7 +396,7 @@
             header {
                 flex-direction: column;
                 padding: 15px;
-                gap: 10px;
+                gap: 15px;
             }
             
             .logo { 
@@ -391,7 +407,17 @@
             .logo-main { font-size: 2rem; }
 
             .nav-line { display: none; }
-            nav { gap: 15px; font-size: 0.95rem; }
+            
+            nav { 
+                flex-wrap: wrap; /* Permite que los enlaces bajen de línea si no caben */
+                justify-content: center;
+                gap: 10px; 
+                font-size: 0.9rem; 
+            }
+
+            .btn-cotizar { margin-left: 0; padding: 6px 12px; font-size: 0.9rem; }
+            
+            nav span { display: none; } /* Ocultamos las barritas en móvil para ganar espacio */
 
             main { 
                 flex-direction: column; 
@@ -405,43 +431,29 @@
                 margin-bottom: 5px;
             }
 
-            h1, .subtitle {
-                max-width: 55%; /* Espacio para el jugador a la derecha */
-            }
-
-            h1 { font-size: 3rem; margin-bottom: 12px; }
+            h1, .subtitle { max-width: 55%; }
+            h1 { font-size: 2.5rem; margin-bottom: 10px; }
             .subtitle { font-size: 1rem; margin-bottom: 15px; line-height: 1.3;}
+            .text-neon { font-size: 1rem; margin-top: 2px;}
             
             /* Ajuste de los 4 cuadros horizontales en móvil */
             .services-container {
-                max-width: 100%; /* Toma todo el ancho disponible ahora */
+                max-width: 100%; 
                 margin-top: 10px;
-                z-index: 30; /* Clave para que se pueda clickear por encima del jugador */
+                z-index: 30; 
                 position: relative;
             }
             
-            .services-title {
-                font-size: 0.9rem;
-            }
-
-            .services-grid {
-                gap: 6px; /* Espacio reducido entre cuadros */
-            }
+            .services-grid { gap: 6px; }
 
             .service-card {
-                padding: 8px 4px;
-                flex: 1; /* Esto hace que los 4 quepan equitativamente a lo ancho (Como dibujado en edited-image.png) */
-                min-height: 85px;
-                justify-content: center;
-            }
-
-            .card-icon {
-                font-size: 1.4rem;
-                margin-bottom: 3px;
+                padding: 10px 4px;
+                flex: 1; 
+                min-height: 95px; /* Altura suficiente para el texto extra */
             }
 
             .card-text {
-                font-size: 0.65rem; /* Letra pequeña para que entren todos en la fila horizontal */
+                font-size: 0.75rem; /* Fuente agrandada en móvil respecto a la versión anterior */
             }
 
             .image-right {
@@ -456,18 +468,18 @@
 
             .player-img {
                 position: absolute;
-                top: 0px;   
+                top: 30px;   
                 right: -30px;
                 left: auto;
                 bottom: auto;
-                height: 450px; 
+                height: 420px; 
                 width: auto;
-                z-index: 15; /* El z-index de los cuadros (30) es mayor para que sean clickeables */
+                z-index: 15;
             }
 
             .spinning-ball {
                 position: absolute;
-                top: 80px;  
+                top: 100px;  
                 right: 90px; 
                 left: auto;
                 width: 45px;
@@ -503,8 +515,9 @@
         <nav>
             <div class="nav-line"></div>
             <a href="#">Inicio</a> <span>|</span>
-            <a href="#">Shows</a> <span>|</span>
-            <a href="#">Contacto</a>
+            <a href="#">Elige tu Show</a> <span>|</span>
+            <a href="#">Experiencia</a>
+            <a href="#cotizar" class="btn-cotizar">Cotizar</a>
         </nav>
     </header>
 
@@ -512,31 +525,28 @@
         <div class="content-left">
             <h1>MUCHO MÁS<br>QUE FÚTBOL</h1>
             
-            <p class="subtitle">Experiencias inolvidables que conectan y sorprenden.</p>
+            <p class="subtitle">
+                Conecta y sorprende con 
+                <span class="text-neon">"show de futbol freestyle para":</span>
+            </p>
             
-            <!-- Aquí reemplazamos por los 4 mini cuadros horizontales -->
             <div class="services-container">
-                <h3 class="services-title">Lleva tu show de fútbol a:</h3>
                 <div class="services-grid">
                     
                     <a href="#empresas" class="service-card">
-                        <span class="card-icon">01</span>
                         <span class="card-text">Empresas</span>
                     </a>
                     
                     <a href="#activaciones" class="service-card">
-                        <span class="card-icon">02</span>
-                        <span class="card-text">Activaciones de marca</span>
+                        <span class="card-text">Activación de marca<br>mejora tus ventas.</span>
                     </a>
                     
                     <a href="#cumpleanos" class="service-card">
-                        <span class="card-icon">03</span>
-                        <span class="card-text">Cumpleaños y eventos</span>
+                        <span class="card-text">Cumpleaños y celebraciones.</span>
                     </a>
                     
                     <a href="#colegios" class="service-card">
-                        <span class="card-icon">04</span>
-                        <span class="card-text">Colegios e institutos</span>
+                        <span class="card-text">Colegios y eventos.</span>
                     </a>
 
                 </div>
