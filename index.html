@@ -432,7 +432,7 @@
         }
 
         @media (max-width: 768px) {
-            /* Navbar Móvil Perfectamente Alineada (Todo en 1 línea) */
+            /* Navbar Móvil Perfectamente Alineada en una línea */
             header { flex-direction: column; padding: 10px 15px; gap: 8px; }
             .logo { align-items: center; text-align: center; }
             .logo-sub { font-size: 0.8rem; } .logo-main { font-size: 2rem; }
@@ -450,7 +450,7 @@
             nav span.separator { display: inline-block; font-size: 0.9rem; margin: 0; }
             
             .dropdown-content { 
-                min-width: 140px; /* Menú desplegable más pequeño y estético */
+                min-width: 140px; 
                 padding: 5px 0;
             }
             .dropdown-content a { padding: 8px; font-size: 0.8rem; }
@@ -472,20 +472,31 @@
             .image-right { position: static; width: 100%; margin-top: 20px; display: flex; flex-direction: column; }
             .hud-background { display: none; }
             
-            /* JUGADOR ARREGLADO: Ahora baja para no esconderse en la barra */
+            /* TUS VALORES EXACTOS PARA EL JUGADOR */
             .player-img {
-                position: absolute; top: 130px; right: -5px; left: auto; bottom: auto; height: 260px; width: auto; z-index: 15;
+                position: absolute;
+                top: -50px;   
+                right: -8px;
+                left: auto;
+                bottom: auto;
+                height: 282px; 
+                width: auto;
+                z-index: 15;
             }
-            
+
+            /* TUS VALORES EXACTOS PARA LAS FOTOS DIFUMINADAS */
             .fifa-slideshow {
-                position: relative; width: 100%; height: 220px; margin-top: 15px;
+                position: relative; 
+                width: 100%; 
+                height: 220px;
                 right: 0; bottom: 0; top: 0; left: 0;
+                margin-top: 20px;
                 -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
                 mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
             }
             .badge { position: relative; bottom: auto; left: auto; justify-content: center; padding-bottom: 30px; margin-top: 10px; }
 
-            /* --- MODO CELULAR PARA LOS SERVICIOS (El layout exacto que pediste) --- */
+            /* --- MODO CELULAR PARA LOS SERVICIOS --- */
             .detail-section { padding: 50px 20px; }
             
             .detail-content, .detail-content.reverse-desktop {
@@ -503,7 +514,7 @@
                 margin-bottom: 5px; 
             }
             
-            /* En móvil, box-square es arriba a la izquierda y box-wide ocupa todo abajo */
+            /* EL CAMBIAZO: Ahora box-square (cuadrado) tiene el video */
             .box-square {
                 grid-column: 1 / 2;
                 grid-row: 2 / 3;
@@ -516,13 +527,14 @@
                 font-size: 0.9rem; 
                 text-align: left; 
                 margin: 0; 
-                align-self: center; /* Alinea el texto perfecto junto al video */
+                align-self: center; 
             }
 
+            /* EL CAMBIAZO: Ahora box-wide (ancho) tiene las fotos */
             .box-wide {
                 grid-column: 1 / -1;
                 grid-row: 3 / 4;
-                aspect-ratio: 16/9; /* Ancho para las fotos difuminadas en celular */
+                aspect-ratio: 16/9; 
                 margin-top: 10px;
             }
 
@@ -536,9 +548,22 @@
             /* ---------------------------------------------------- */
 
             .contact-section h2 { font-size: 3rem; }
-            .bio-box { padding: 15px 20px; border-left-width: 3px; margin-bottom: 30px; }
-            .bio-text { font-size: 1rem; }
-            .bio-text strong { font-size: 1.1rem; }
+            
+            /* AJUSTE BIOGRAFÍA EN MÓVIL PARA QUE NO OCUPE TANTO ESPACIO */
+            .bio-box { 
+                padding: 12px 15px; 
+                border-left-width: 3px; 
+                margin-bottom: 25px; 
+                max-width: 100%;
+            }
+            .bio-text { 
+                font-size: 0.85rem; /* Letra más pequeña */
+                line-height: 1.4; 
+            }
+            .bio-text strong { 
+                font-size: 0.95rem; /* Nombre Pipe más pequeño pero destacado */
+            }
+
             .social-links { flex-direction: column; gap: 15px; }
         }
     </style>
