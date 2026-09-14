@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pipe Shows - Futbol Freestyle Colombia</title>
-    <!-- Fuentes estilo Tech / Sport -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Teko:wght@500;600&display=swap" rel="stylesheet">
     
     <style>
@@ -225,7 +224,7 @@
 
         .service-card {
             flex: 1;
-            background: rgba(255, 255, 255, 0.05); /* Un poco más de contraste sobre fondo negro */
+            background: rgba(255, 255, 255, 0.05); 
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 15px 10px;
             text-decoration: none;
@@ -318,29 +317,38 @@
             object-fit: cover; 
             opacity: 0;
             filter: grayscale(20%) contrast(110%);
-            /* Animación ajustada a 22 segundos totales para 11 fotos */
-            animation: fifaCrossfade 22s infinite;
+            /* 20 fotos x 1.5 segundos = 30 segundos totales */
+            animation: fifaCrossfade 30s infinite;
         }
 
-        /* Retraso de 2 segundos para cada imagen */
-        .slide-1 { animation-delay: 0s; }
-        .slide-2 { animation-delay: 2s; }
-        .slide-3 { animation-delay: 4s; }
-        .slide-4 { animation-delay: 6s; }
-        .slide-5 { animation-delay: 8s; }
-        .slide-6 { animation-delay: 10s; }
-        .slide-7 { animation-delay: 12s; }
-        .slide-8 { animation-delay: 14s; }
-        .slide-9 { animation-delay: 16s; }
-        .slide-10 { animation-delay: 18s; }
-        .slide-11 { animation-delay: 20s; }
+        /* Retrasos matemáticos cada 1.5s */
+        .slide-1  { animation-delay: 0s; }
+        .slide-2  { animation-delay: 1.5s; }
+        .slide-3  { animation-delay: 3s; }
+        .slide-4  { animation-delay: 4.5s; }
+        .slide-5  { animation-delay: 6s; }
+        .slide-6  { animation-delay: 7.5s; }
+        .slide-7  { animation-delay: 9s; }
+        .slide-8  { animation-delay: 10.5s; }
+        .slide-9  { animation-delay: 12s; }
+        .slide-10 { animation-delay: 13.5s; }
+        .slide-11 { animation-delay: 15s; }
+        .slide-12 { animation-delay: 16.5s; }
+        .slide-13 { animation-delay: 18s; }
+        .slide-14 { animation-delay: 19.5s; }
+        .slide-15 { animation-delay: 21s; }
+        .slide-16 { animation-delay: 22.5s; }
+        .slide-17 { animation-delay: 24s; }
+        .slide-18 { animation-delay: 25.5s; }
+        .slide-19 { animation-delay: 27s; }
+        .slide-20 { animation-delay: 28.5s; }
 
-        /* Porcentajes recalculados para 11 fotos */
+        /* Porcentajes para mostrar cada imagen solo el 5% del tiempo (1.5s) */
         @keyframes fifaCrossfade {
             0%   { opacity: 0; }
-            5%   { opacity: 0.6; }
-            10%  { opacity: 0.6; }
-            15%  { opacity: 0; }
+            1.5% { opacity: 0.6; }
+            3.5% { opacity: 0.6; }
+            5%   { opacity: 0; }
             100% { opacity: 0; }
         }
 
@@ -351,7 +359,6 @@
             left: -5%;   
             height: 70%; 
             z-index: 15; 
-            /* Quitamos el drop-shadow para que no se marque el cuadrado del video en escritorio */
         }
 
         /* --- Mini Logo --- */
@@ -373,7 +380,6 @@
             border: 1px solid rgba(0, 240, 255, 0.4);
             padding: 5px;
             background-color: transparent;
-            /* Con el fondo 100% negro en la página, esto funciona a la perfección */
             mix-blend-mode: lighten; 
         }
 
@@ -479,14 +485,13 @@
 
             .hud-background { display: none; }
 
-            /* POSICIÓN EXACTA MANTENIDA PARA EL VIDEO EN MÓVIL */
             .player-img {
                 position: absolute;
-                top: -48px;   
-                right: -7px;
+                top: -50px;   
+                right: -8px;
                 left: auto;
                 bottom: auto;
-                height: 280px; 
+                height: 282px; 
                 width: auto;
                 z-index: 15;
             }
@@ -548,45 +553,4 @@
                     </a>
                     
                     <a href="#cumpleanos" class="service-card">
-                        <span class="card-text">Cumpleaños y<br>celebraciones</span>
-                    </a>
-                    
-                    <a href="#colegios" class="service-card">
-                        <span class="card-text">Colegios<br>y eventos</span>
-                    </a>
-
-                </div>
-            </div>
-            
-        </div>
-
-        <div class="image-right">
-            <div class="hud-background"></div>
-
-            <!-- Las 11 Imágenes del Slideshow -->
-            <div class="fifa-slideshow">
-                <img src="evento1.jpg" class="slide slide-1">
-                <img src="evento2.jpg" class="slide slide-2">
-                <img src="evento3.jpg" class="slide slide-3">
-                <img src="evento4.jpg" class="slide slide-4">
-                <img src="evento5.jpg" class="slide slide-5">
-                <img src="evento6.jpg" class="slide slide-6">
-                <img src="evento7.jpg" class="slide slide-7">
-                <img src="evento8.jpg" class="slide slide-8">
-                <img src="evento9.jpg" class="slide slide-9">
-                <img src="evento10.jpg" class="slide slide-10">
-                <img src="evento11.jpg" class="slide slide-11">
-            </div>
-            
-            <!-- EL JUGADOR AHORA ES EL VIDEO CAMUFLADO EN EL FONDO NEGRO -->
-            <video src="siluetalogo.mp4" autoplay loop muted playsinline class="player-img"></video>
-        </div>
-    </main>
-
-    <div class="badge">
-        <video src="siluetalogo.mp4" autoplay loop muted playsinline class="badge-video"></video>
-        <p>Pipe Shows<br>Futbol Freestyle</p>
-    </div>
-
-</body>
-</html>
+                        <span class="card-text">Cumpleaños y
