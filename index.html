@@ -123,7 +123,7 @@
         }
 
         .dropdown-content {
-            display: none; /* Oculto por defecto, se activa con JS */
+            display: none; 
             position: absolute;
             top: 100%;
             left: 50%;
@@ -137,7 +137,6 @@
             border-radius: 4px;
         }
 
-        /* Clase añadida vía Javascript para mostrar el menú */
         .dropdown-content.show-dropdown {
             display: flex;
             flex-direction: column;
@@ -433,8 +432,8 @@
         }
 
         @media (max-width: 768px) {
-            /* Navbar Móvil Perfectamente Alineada */
-            header { flex-direction: column; padding: 15px; gap: 15px; }
+            /* Navbar Móvil Perfectamente Alineada (Todo en 1 línea) */
+            header { flex-direction: column; padding: 10px 15px; gap: 8px; }
             .logo { align-items: center; text-align: center; }
             .logo-sub { font-size: 0.8rem; } .logo-main { font-size: 2rem; }
             
@@ -444,19 +443,19 @@
                 flex-wrap: nowrap; 
                 justify-content: center; 
                 align-items: center;
-                gap: 8px; 
+                gap: 6px; 
                 width: 100%; 
             }
-            nav a { font-size: 0.85rem; }
+            nav a { font-size: 0.8rem; }
             nav span.separator { display: inline-block; font-size: 0.9rem; margin: 0; }
             
             .dropdown-content { 
-                min-width: 160px; /* Menú desplegable más pequeño */
+                min-width: 140px; /* Menú desplegable más pequeño y estético */
                 padding: 5px 0;
             }
-            .dropdown-content a { padding: 10px; font-size: 0.85rem; }
+            .dropdown-content a { padding: 8px; font-size: 0.8rem; }
 
-            .btn-cotizar { margin-left: 0; padding: 6px 12px; font-size: 0.9rem; }
+            .btn-cotizar { margin-left: 0; padding: 4px 8px; font-size: 0.8rem; }
 
             /* Hero Section Móvil */
             .hero-section { flex-direction: column; padding: 120px 20px 20px; }
@@ -473,9 +472,11 @@
             .image-right { position: static; width: 100%; margin-top: 20px; display: flex; flex-direction: column; }
             .hud-background { display: none; }
             
+            /* JUGADOR ARREGLADO: Ahora baja para no esconderse en la barra */
             .player-img {
-                position: absolute; top: -50px; right: -8px; left: auto; bottom: auto; height: 282px; width: auto; z-index: 15;
+                position: absolute; top: 130px; right: -5px; left: auto; bottom: auto; height: 260px; width: auto; z-index: 15;
             }
+            
             .fifa-slideshow {
                 position: relative; width: 100%; height: 220px; margin-top: 15px;
                 right: 0; bottom: 0; top: 0; left: 0;
@@ -502,7 +503,8 @@
                 margin-bottom: 5px; 
             }
             
-            .pic-box {
+            /* En móvil, box-square es arriba a la izquierda y box-wide ocupa todo abajo */
+            .box-square {
                 grid-column: 1 / 2;
                 grid-row: 2 / 3;
                 height: 100%;
@@ -514,13 +516,13 @@
                 font-size: 0.9rem; 
                 text-align: left; 
                 margin: 0; 
-                align-self: center; /* Alinea el texto perfecto junto a las fotos */
+                align-self: center; /* Alinea el texto perfecto junto al video */
             }
 
-            .vid-box {
+            .box-wide {
                 grid-column: 1 / -1;
                 grid-row: 3 / 4;
-                aspect-ratio: 16/9; /* Video ancho en celular */
+                aspect-ratio: 16/9; /* Ancho para las fotos difuminadas en celular */
                 margin-top: 10px;
             }
 
@@ -625,15 +627,15 @@
                 <p>Convierte tu oficina, bodega o lugar de trabajo en diversión. Rompe la rutina con una experiencia diferente que integra a todo el equipo, eleva la energía y genera un ambiente inolvidable.</p>
             </div>
             <div class="detail-visuals">
-                <div class="media-box pic-box">
+                <div class="media-box box-square">
+                    <video src="video-empresas.mp4" poster="poster-empresas.jpg" autoplay loop muted playsinline></video>
+                </div>
+                <div class="media-box box-wide">
                     <img src="empresas1.jpg" class="slide-5 s5-1">
                     <img src="empresas2.jpg" class="slide-5 s5-2">
                     <img src="empresas3.jpg" class="slide-5 s5-3">
                     <img src="empresas4.jpg" class="slide-5 s5-4">
                     <img src="empresas5.jpg" class="slide-5 s5-5">
-                </div>
-                <div class="media-box vid-box">
-                    <video src="video-empresas.mp4" poster="poster-empresas.jpg" autoplay loop muted playsinline></video>
                 </div>
                 <a href="#contacto" class="btn-section-cotizar">Cotizar Evento Empresarial</a>
             </div>
@@ -647,15 +649,15 @@
                 <p>Usa el fútbol freestyle para llamar la atención, atraer más personas y generar oportunidades para vender más. El freestyle llama la atención, la atención genera tráfico, y el tráfico se convierte en ventas.</p>
             </div>
             <div class="detail-visuals">
-                <div class="media-box pic-box">
+                <div class="media-box box-square">
+                    <video src="video-marca.mp4" poster="poster-marca.jpg" autoplay loop muted playsinline></video>
+                </div>
+                <div class="media-box box-wide">
                     <img src="marca1.jpg" class="slide-5 s5-1">
                     <img src="marca2.jpg" class="slide-5 s5-2">
                     <img src="marca3.jpg" class="slide-5 s5-3">
                     <img src="marca4.jpg" class="slide-5 s5-4">
                     <img src="marca5.jpg" class="slide-5 s5-5">
-                </div>
-                <div class="media-box vid-box">
-                    <video src="video-marca.mp4" poster="poster-marca.jpg" autoplay loop muted playsinline></video>
                 </div>
                 <a href="#contacto" class="btn-section-cotizar">Cotizar Activación</a>
             </div>
@@ -669,15 +671,15 @@
                 <p>Lleva alegría y asombro a tu celebración. Un show interactivo donde todos participan y se sienten estrellas por un día. Diversión pura apta para todas las edades y públicos.</p>
             </div>
             <div class="detail-visuals">
-                <div class="media-box pic-box">
+                <div class="media-box box-square">
+                    <video src="video-cumpleanos.mp4" poster="poster-cumpleanos.jpg" autoplay loop muted playsinline></video>
+                </div>
+                <div class="media-box box-wide">
                     <img src="cumpleanos1.jpg" class="slide-5 s5-1">
                     <img src="cumpleanos2.jpg" class="slide-5 s5-2">
                     <img src="cumpleanos3.jpg" class="slide-5 s5-3">
                     <img src="cumpleanos4.jpg" class="slide-5 s5-4">
                     <img src="cumpleanos5.jpg" class="slide-5 s5-5">
-                </div>
-                <div class="media-box vid-box">
-                    <video src="video-cumpleanos.mp4" poster="poster-cumpleanos.jpg" autoplay loop muted playsinline></video>
                 </div>
                 <a href="#contacto" class="btn-section-cotizar">Cotizar Cumpleaños</a>
             </div>
@@ -691,15 +693,15 @@
                 <p>Lleva la emoción a tu colegio conectando con el público masivo, eventos deportivos y actividades institucionales con pura energía y adrenalina.</p>
             </div>
             <div class="detail-visuals">
-                <div class="media-box pic-box">
+                <div class="media-box box-square">
+                    <video src="video-colegios.mp4" poster="poster-colegios.jpg" autoplay loop muted playsinline></video>
+                </div>
+                <div class="media-box box-wide">
                     <img src="colegioseventos1.jpg" class="slide-5 s5-1">
                     <img src="colegioseventos2.jpg" class="slide-5 s5-2">
                     <img src="colegioseventos3.jpg" class="slide-5 s5-3">
                     <img src="colegioseventos4.jpg" class="slide-5 s5-4">
                     <img src="colegioseventos5.jpg" class="slide-5 s5-5">
-                </div>
-                <div class="media-box vid-box">
-                    <video src="video-colegios.mp4" poster="poster-colegios.jpg" autoplay loop muted playsinline></video>
                 </div>
                 <a href="#contacto" class="btn-section-cotizar">Cotizar Evento Masivo</a>
             </div>
@@ -711,7 +713,7 @@
         
         <div class="bio-box">
             <p class="bio-text">
-                <strong>¡Hola! Soy Pipe.</strong> Llevo más de 8 años como profesional de fútbol freestyle, llevando mi arte a cientos de escenarios, eventos y activaciones de marca. Mi objetivo no es solo mostrar trucos asombrosos, sino tener un manejo de público excepcional para conectar con tu gente, elevar la energía y garantizar una experiencia que todos recordarán. ¡Hagamos que tu evento sea un éxito!
+                <strong>¡Hola! Soy Pipe.</strong> Llevo más de 8 años como profesional de fútbol freestyle, llevando mi arte a cientos de escenarios, eventos empresariales y activaciones de marca. Mi objetivo no es solo mostrar trucos asombrosos, sino tener un manejo de público excepcional para conectar genuinamente con tu gente, elevar la energía del lugar y garantizar una experiencia que todos recordarán. ¡Hagamos que tu evento sea un éxito rotundo!
             </p>
         </div>
 
@@ -734,7 +736,7 @@
             
             // Abrir / Cerrar al darle clic a "Elige tu Show"
             toggle.addEventListener('click', (e) => {
-                e.preventDefault(); // Evita que la página salte hacia arriba
+                e.preventDefault(); 
                 menu.classList.toggle('show-dropdown');
             });
 
@@ -745,7 +747,7 @@
                 }
             });
 
-            // Cerrar el menú si le das clic a una de las opciones del menú
+            // Cerrar el menú automáticamente al seleccionar un show
             const links = menu.querySelectorAll('a');
             links.forEach(link => {
                 link.addEventListener('click', () => {
