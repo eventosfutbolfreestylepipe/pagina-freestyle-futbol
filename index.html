@@ -10,6 +10,7 @@
         :root {
             /* FONDO PURAMENTE NEGRO PARA CAMUFLAR EL VIDEO */
             --bg-dark: #000000; 
+            --bg-section: #0a0d10; /* Un tono levísimamente gris para separar secciones */
             --text-main: #ffffff;
             --text-muted: #a0aec0;
             --accent-hud: #4a5568;
@@ -21,18 +22,14 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth; /* Para que al dar clic en el menú, baje suavemente */
         }
 
         body {
-            /* Color negro absoluto sin gradientes */
             background-color: var(--bg-dark);
             color: var(--text-main);
             font-family: 'Rajdhani', sans-serif;
             overflow-x: hidden;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            position: relative;
         }
 
         /* --- Menú Minimalista / Estilo Game --- */
@@ -41,8 +38,12 @@
             justify-content: space-between;
             align-items: center;
             padding: 30px 60px;
-            position: relative;
-            z-index: 20;
+            position: fixed; /* Menú fijo arriba */
+            top: 0; left: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
         }
 
         .logo {
@@ -93,14 +94,9 @@
             white-space: nowrap; 
         }
 
-        /* Efecto línea inferior para enlaces normales */
         nav a:not(.btn-cotizar)::after {
             content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            width: 0;
-            height: 2px;
+            position: absolute; left: 50%; bottom: 0; width: 0; height: 2px;
             background-color: var(--neon-blue);
             box-shadow: 0 0 8px var(--neon-blue);
             transition: all 0.3s ease;
@@ -112,407 +108,367 @@
             text-shadow: 0 0 8px var(--text-main);
         }
 
-        nav a:not(.btn-cotizar):hover::after {
-            width: 100%;
+        nav a:not(.btn-cotizar):hover::after { width: 100%; }
+
+        nav span.separator {
+            color: var(--text-muted); opacity: 0.5; font-size: 1.3rem;
+            display: inline-block; transform: translateY(-2px); 
         }
 
-        /* Puntico separador */
-        nav span {
-            color: var(--text-muted);
-            opacity: 0.5;
-            font-size: 1.3rem;
+        /* --- Menú Desplegable (Dropdown) --- */
+        .dropdown {
+            position: relative;
             display: inline-block;
-            transform: translateY(-2px); 
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(10, 13, 16, 0.95);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            min-width: 220px;
+            box-shadow: 0 8px 16px rgba(0, 240, 255, 0.1);
+            z-index: 101;
+            padding: 10px 0;
+            border-radius: 4px;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .dropdown-content a {
+            color: var(--text-main);
+            padding: 12px 20px;
+            font-size: 1rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .dropdown-content a:last-child { border-bottom: none; }
+        
+        .dropdown-content a::after { display: none; } /* Quita la línea del hover normal */
+        
+        .dropdown-content a:hover {
+            background-color: rgba(0, 240, 255, 0.1);
+            color: var(--neon-blue);
         }
 
         /* --- Botón "Cotizar" Estilo Imagen --- */
         .btn-cotizar {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 8px 16px;
-            margin-left: 5px;
-            font-weight: 700;
-            font-size: 1.15rem; 
-            position: relative;
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 8px 16px; margin-left: 5px; font-weight: 700; font-size: 1.15rem; 
+            position: relative; color: var(--text-main);
         }
 
         .btn-cotizar::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0;
-            width: 70%; height: 75%;
-            border-top: 2px solid var(--text-muted);
-            border-right: 2px solid var(--text-muted);
+            content: ''; position: absolute; top: 0; right: 0; width: 70%; height: 75%;
+            border-top: 2px solid var(--text-muted); border-right: 2px solid var(--text-muted);
             transition: all 0.3s ease;
         }
 
         .btn-cotizar::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 70%; height: 75%;
-            border-bottom: 2px solid var(--text-muted);
-            border-left: 2px solid var(--text-muted);
+            content: ''; position: absolute; bottom: 0; left: 0; width: 70%; height: 75%;
+            border-bottom: 2px solid var(--text-muted); border-left: 2px solid var(--text-muted);
             transition: all 0.3s ease;
         }
 
         .btn-cotizar:hover {
-            color: var(--neon-blue);
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+            color: var(--neon-blue); text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
         }
 
-        .btn-cotizar:hover::before, 
-        .btn-cotizar:hover::after {
-            border-color: var(--neon-blue);
-            width: 100%; 
-            height: 100%;
+        .btn-cotizar:hover::before, .btn-cotizar:hover::after {
+            border-color: var(--neon-blue); width: 100%; height: 100%;
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.2) inset;
         }
 
-        /* --- Hero Section --- */
-        main {
-            display: flex;
-            padding: 40px 60px;
-            flex-grow: 1;
-            position: relative;
-            z-index: 10;
+        /* --- Sección PORTADA (Inicio) --- */
+        .hero-section {
+            display: flex; padding: 140px 60px 40px; /* Padding top ajustado por el menú fijo */
+            min-height: 100vh; position: relative; z-index: 10;
         }
 
         .content-left {
-            width: 50%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            z-index: 20;
+            width: 50%; display: flex; flex-direction: column; justify-content: center; z-index: 20;
         }
 
         h1 {
-            font-family: 'Teko', sans-serif;
-            font-size: 5.5rem; 
-            line-height: 0.9;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            font-family: 'Teko', sans-serif; font-size: 5.5rem; line-height: 0.9;
+            text-transform: uppercase; margin-bottom: 15px; text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
         }
 
         .subtitle {
-            font-size: 1.6rem;
-            font-weight: 500;
-            margin-bottom: 25px;
-            max-width: 90%;
-            line-height: 1.2;
+            font-size: 1.6rem; font-weight: 500; margin-bottom: 25px; max-width: 90%; line-height: 1.2;
         }
 
         .text-neon {
-            color: var(--neon-blue);
-            font-weight: 700;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
-            font-size: 1.8rem;
+            color: var(--neon-blue); font-weight: 700; text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); font-size: 1.8rem;
         }
 
-        /* --- Cuadros de Servicios --- */
-        .services-container {
-            width: 100%;
-            max-width: 600px; 
-        }
-
-        .services-grid {
-            display: flex;
-            gap: 12px;
-        }
+        /* Cuadros de Servicios (Inicio) */
+        .services-container { width: 100%; max-width: 600px; }
+        .services-grid { display: flex; gap: 12px; }
 
         .service-card {
-            flex: 1;
-            background: rgba(255, 255, 255, 0.05); /* Un poco más de contraste sobre fondo negro */
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px 10px;
-            text-decoration: none;
-            color: var(--text-main);
-            text-align: center;
-            border-radius: 4px;
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-            min-height: 90px;
+            flex: 1; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 15px 10px; text-decoration: none; color: var(--text-main); text-align: center;
+            border-radius: 4px; backdrop-filter: blur(5px); transition: all 0.3s ease;
+            display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; min-height: 90px;
         }
 
         .service-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 2px; height: 100%;
-            background: var(--neon-blue);
-            opacity: 0;
-            transition: opacity 0.3s;
+            content: ''; position: absolute; top: 0; left: 0; width: 2px; height: 100%;
+            background: var(--neon-blue); opacity: 0; transition: opacity 0.3s;
         }
 
         .service-card:hover {
-            background: rgba(0, 240, 255, 0.05);
-            border-color: rgba(0, 240, 255, 0.4);
-            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.15);
-            transform: translateY(-3px);
+            background: rgba(0, 240, 255, 0.05); border-color: rgba(0, 240, 255, 0.4);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.15); transform: translateY(-3px);
         }
 
-        .service-card:hover::before {
-            opacity: 1;
-        }
+        .service-card:hover::before { opacity: 1; }
 
-        .card-text {
-            font-size: 1.2rem; 
-            font-weight: 700;
-            line-height: 1.2;
-        }
+        .card-text { font-size: 1.2rem; font-weight: 700; line-height: 1.2; }
 
-        /* --- Contenedor de Imagen y HUD (Lado Derecho) --- */
-        .image-right {
-            position: absolute;
-            right: 0;
-            top: 0;
-            width: 60%;
-            height: 100%;
-            z-index: 5;
-        }
+        /* Contenedor Lado Derecho (Inicio) */
+        .image-right { position: absolute; right: 0; top: 0; width: 60%; height: 100%; z-index: 5; }
 
         .hud-background {
-            position: absolute;
-            right: 40px;
-            bottom: 20px;
-            width: 80%;
-            height: 70%;
-            border: 2px solid rgba(255,255,255,0.03);
-            clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
-            background-color: rgba(255, 255, 255, 0.02);
-            z-index: 3;
+            position: absolute; right: 40px; bottom: 20px; width: 80%; height: 70%;
+            border: 2px solid rgba(255,255,255,0.03); clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
+            background-color: rgba(255, 255, 255, 0.02); z-index: 3;
         }
 
         .hud-background::before {
-            content: '';
-            position: absolute;
-            top: -2px; left: -2px; right: -2px; bottom: -2px;
-            border: 1px solid rgba(0,240,255,0.2);
-            clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
+            content: ''; position: absolute; top: -2px; left: -2px; right: -2px; bottom: -2px;
+            border: 1px solid rgba(0,240,255,0.2); clip-path: polygon(25% 0, 100% 0, 100% 100%, 0 100%, 0 45%);
             pointer-events: none;
         }
 
-        /* --- Slideshow Estilo Menú FIFA --- */
         .fifa-slideshow {
-            position: absolute;
-            bottom: 5%; 
-            right: 5%;  
-            width: 500px;
-            height: 350px;
-            z-index: 4; 
+            position: absolute; bottom: 5%; right: 5%; width: 500px; height: 350px; z-index: 4; 
             -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
-            mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%);
-            pointer-events: none; 
+            mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%); pointer-events: none; 
         }
 
-        .slide {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            object-fit: cover; 
-            opacity: 0;
-            filter: grayscale(20%) contrast(110%);
-            /* Animación ajustada a 30.6 segundos totales (17 fotos x 1.8s cada una) */
-            animation: fifaCrossfade 30.6s infinite;
+        /* Animación original 20 imágenes */
+        .slide-main {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; 
+            opacity: 0; filter: grayscale(20%) contrast(110%);
+            animation: fifaCrossfadeMain 30s infinite;
         }
 
-        /* Retrasos matemáticos cada 1.8s para las 17 imágenes */
-        .slide-1  { animation-delay: 0s; }
-        .slide-2  { animation-delay: 1.8s; }
-        .slide-3  { animation-delay: 3.6s; }
-        .slide-4  { animation-delay: 5.4s; }
-        .slide-5  { animation-delay: 7.2s; }
-        .slide-6  { animation-delay: 9s; }
-        .slide-7  { animation-delay: 10.8s; }
-        .slide-8  { animation-delay: 12.6s; }
-        .slide-9  { animation-delay: 14.4s; }
-        .slide-10 { animation-delay: 16.2s; }
-        .slide-11 { animation-delay: 18s; }
-        .slide-12 { animation-delay: 19.8s; }
-        .slide-13 { animation-delay: 21.6s; }
-        .slide-14 { animation-delay: 23.4s; }
-        .slide-15 { animation-delay: 25.2s; }
-        .slide-16 { animation-delay: 27s; }
-        .slide-17 { animation-delay: 28.8s; }
+        .sm-1 { animation-delay: 0s; } .sm-2 { animation-delay: 1.5s; } .sm-3 { animation-delay: 3s; }
+        .sm-4 { animation-delay: 4.5s; } .sm-5 { animation-delay: 6s; } .sm-6 { animation-delay: 7.5s; }
+        .sm-7 { animation-delay: 9s; } .sm-8 { animation-delay: 10.5s; } .sm-9 { animation-delay: 12s; }
+        .sm-10 { animation-delay: 13.5s; } .sm-11 { animation-delay: 15s; } .sm-12 { animation-delay: 16.5s; }
+        .sm-13 { animation-delay: 18s; } .sm-14 { animation-delay: 19.5s; } .sm-15 { animation-delay: 21s; }
+        .sm-16 { animation-delay: 22.5s; } .sm-17 { animation-delay: 24s; } .sm-18 { animation-delay: 25.5s; }
+        .sm-19 { animation-delay: 27s; } .sm-20 { animation-delay: 28.5s; }
 
-        /* Porcentajes ajustados a la nueva cantidad (5.8% es approx el tiempo de cada foto) */
-        @keyframes fifaCrossfade {
+        @keyframes fifaCrossfadeMain {
+            0% { opacity: 0; } 1.5% { opacity: 0.6; } 3.5% { opacity: 0.6; } 5% { opacity: 0; } 100% { opacity: 0; }
+        }
+
+        .player-img { position: absolute; bottom: 15%; left: -5%; height: 70%; z-index: 15; }
+
+        .badge {
+            position: absolute; bottom: 40px; left: 60px; display: flex; align-items: center; gap: 15px; z-index: 10;
+        }
+        .badge .badge-video {
+            width: 90px; height: 90px; object-fit: cover; 
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            border: 1px solid rgba(0, 240, 255, 0.4); padding: 5px; background-color: transparent; mix-blend-mode: lighten; 
+        }
+        .badge p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.2; }
+
+
+        /* =========================================
+           NUEVAS SECCIONES DE SERVICIOS
+           ========================================= */
+        .detail-section {
+            padding: 80px 60px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .detail-section:nth-child(even) {
+            background-color: var(--bg-section); /* Alterna el fondo para diferenciar */
+        }
+
+        .detail-content {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 50px;
+        }
+
+        .detail-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .detail-text h2 {
+            font-family: 'Teko', sans-serif;
+            font-size: 4.5rem;
+            line-height: 0.9;
+            color: var(--neon-blue);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .detail-text p {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+            margin-bottom: 40px;
+        }
+
+        .detail-visuals {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            position: relative;
+        }
+
+        /* Cuadros multimedia (Fotos y Video) */
+        .media-box {
+            position: relative;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/5; /* Aspecto un poco vertical */
+            background: #111;
+        }
+
+        .media-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Animación para 5 fotos cada 1.5s (Total 7.5s) */
+        .slide-5 {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+            opacity: 0; animation: fadeFive 7.5s infinite;
+        }
+        
+        .s5-1 { animation-delay: 0s; }
+        .s5-2 { animation-delay: 1.5s; }
+        .s5-3 { animation-delay: 3s; }
+        .s5-4 { animation-delay: 4.5s; }
+        .s5-5 { animation-delay: 6s; }
+
+        @keyframes fadeFive {
             0%   { opacity: 0; }
-            1%   { opacity: 0.6; }
-            4%   { opacity: 0.6; }
-            5.8% { opacity: 0; }
+            4%   { opacity: 1; }
+            16%  { opacity: 1; }
+            20%  { opacity: 0; }
             100% { opacity: 0; }
         }
 
-        /* Jugador de Fútbol principal (AHORA ES UN VIDEO) */
-        .player-img {
-            position: absolute;
-            bottom: 15%; 
-            left: -5%;   
-            height: 70%; 
-            z-index: 15; 
-            /* Quitamos el drop-shadow para que no se marque el cuadrado del video en escritorio */
+        .detail-visuals .btn-cotizar {
+            grid-column: span 2; /* El botón ocupa todo el ancho abajo de las fotos */
+            margin-top: 10px;
+            text-align: center;
         }
 
-        /* --- Mini Logo --- */
-        .badge {
-            position: absolute;
-            bottom: 40px;
-            left: 60px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            z-index: 10;
-        }
-
-        .badge .badge-video {
-            width: 90px; 
-            height: 90px;
-            object-fit: cover; 
-            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
-            border: 1px solid rgba(0, 240, 255, 0.4);
-            padding: 5px;
-            background-color: transparent;
-            /* Con el fondo 100% negro en la página, esto funciona a la perfección */
-            mix-blend-mode: lighten; 
-        }
-
-        .badge p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            line-height: 1.2;
-        }
 
         /* =========================================
-           ADAPTACIÓN PARA CELULARES Y TABLETS
+           SECCIÓN DE CONTACTO
+           ========================================= */
+        .contact-section {
+            padding: 100px 60px;
+            text-align: center;
+            background: linear-gradient(to top, #0a0d10, #000000);
+            border-top: 1px solid rgba(0, 240, 255, 0.2);
+        }
+
+        .contact-section h2 {
+            font-family: 'Teko', sans-serif; font-size: 5rem;
+            color: var(--neon-blue); text-transform: uppercase; margin-bottom: 20px;
+        }
+
+        .contact-section p {
+            font-size: 1.5rem; color: var(--text-muted); margin-bottom: 40px;
+        }
+
+        .social-links {
+            display: flex; justify-content: center; gap: 30px; margin-bottom: 50px;
+        }
+
+        .social-box {
+            display: flex; align-items: center; gap: 15px;
+            padding: 15px 30px; border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50px; text-decoration: none; color: white;
+            font-size: 1.3rem; font-weight: 700; transition: all 0.3s;
+        }
+
+        .social-box:hover {
+            border-color: var(--neon-blue); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+            color: var(--neon-blue); transform: translateY(-5px);
+        }
+
+        .social-icon { font-size: 1.8rem; }
+
+
+        /* =========================================
+           ADAPTACIÓN PARA CELULARES
            ========================================= */
         @media (max-width: 1024px) {
             h1 { font-size: 4rem; }
-            .subtitle { font-size: 1.4rem; }
-            .text-neon { font-size: 1.5rem; }
-            .content-left { width: 60%; }
-            .fifa-slideshow { width: 350px; height: 250px; }
+            .detail-content { flex-direction: column; }
+            .detail-text h2 { font-size: 3.5rem; }
         }
 
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                padding: 15px;
-                gap: 15px;
-            }
+            header { flex-direction: column; padding: 15px; gap: 15px; }
+            .logo { align-items: center; text-align: center; }
+            .logo-sub { font-size: 0.8rem; } .logo-main { font-size: 2rem; }
             
-            .logo { 
-                align-items: center;
-                text-align: center;
-            }
-            .logo-sub { font-size: 0.8rem; }
-            .logo-main { font-size: 2rem; }
-
             .nav-line { display: none; }
+            nav { flex-wrap: wrap; justify-content: center; gap: 10px; width: 100%; }
+            nav a { font-size: 0.85rem; }
+            nav span.separator { display: none; } /* Quitamos separadores para hacer espacio al dropdown */
             
-            nav { 
-                flex-wrap: nowrap; 
-                justify-content: center;
-                gap: 5px; 
-                width: 100%;
-            }
+            .dropdown-content { position: static; transform: none; min-width: 100%; text-align: center; }
 
-            nav a { 
-                font-size: 0.85rem; 
-            }
-
-            nav span { 
-                display: inline-block; 
-                font-size: 0.9rem; 
-                margin: 0;
-            }
-
-            .btn-cotizar { 
-                margin-left: 0; 
-                padding: 5px 8px; 
-                font-size: 0.85rem; 
-            }
-
-            main { 
-                flex-direction: column; 
-                padding: 20px; 
-            }
+            .hero-section { flex-direction: column; padding: 140px 20px 20px; }
+            .content-left { width: 100%; align-items: flex-start; text-align: left; }
+            h1, .subtitle { max-width: 100%; } h1 { font-size: 2.5rem; }
             
-            .content-left {
-                width: 100%;
-                align-items: flex-start; 
-                text-align: left;
-                margin-bottom: 5px;
-            }
-
-            h1, .subtitle { max-width: 55%; }
-            h1 { font-size: 2.5rem; margin-bottom: 10px; }
-            .subtitle { font-size: 1rem; margin-bottom: 15px; line-height: 1.3;}
-            .text-neon { font-size: 1.1rem; margin-top: 2px; }
-            
-            .services-container {
-                max-width: 100%; 
-                margin-top: 10px;
-                z-index: 30; 
-                position: relative;
-            }
-            
+            .services-container { margin-top: 10px; z-index: 30; }
             .services-grid { gap: 6px; }
+            .service-card { padding: 12px 4px; min-height: 80px; }
+            .card-text { font-size: 0.75rem; }
 
-            .service-card {
-                padding: 12px 4px;
-                flex: 1; 
-                min-height: 100px;
-            }
-
-            .card-text {
-                font-size: 0.85rem; 
-            }
-
-            .image-right {
-                position: static; 
-                width: 100%;
-                margin-top: 20px;
-                display: flex;
-                flex-direction: column;
-            }
-
+            .image-right { position: static; width: 100%; margin-top: 20px; display: flex; flex-direction: column; }
             .hud-background { display: none; }
-
-            /* POSICIÓN EXACTA MANTENIDA PARA EL VIDEO EN MÓVIL */
+            
             .player-img {
-                position: absolute;
-                top: -50px;   
-                right: -8px;
-                left: auto;
-                bottom: auto;
-                height: 282px; 
-                width: auto;
-                z-index: 15;
+                position: absolute; top: -50px; right: -8px; left: auto; bottom: auto; height: 282px; width: auto; z-index: 15;
             }
-
             .fifa-slideshow {
-                position: relative; 
-                width: 100%; 
-                height: 220px;
-                right: 0; bottom: 0; top: 0; left: 0;
-                margin-top: 20px;
-                -webkit-mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
-                mask-image: radial-gradient(ellipse at center, rgba(0,0,0,1) 50%, rgba(0,0,0,0) 90%);
+                position: relative; width: 100%; height: 220px; margin-top: 20px;
             }
+            .badge { position: relative; bottom: auto; left: auto; justify-content: center; padding-bottom: 30px; margin-top: 10px; }
 
-            .badge {
-                position: relative;
-                bottom: auto; left: auto;
-                justify-content: center;
-                padding-bottom: 30px;
-                margin-top: 10px;
-            }
+            /* Secciones de Detalles Móvil */
+            .detail-section { padding: 60px 20px; }
+            .detail-text h2 { font-size: 2.8rem; text-align: center; }
+            .detail-text p { font-size: 1.1rem; text-align: center; margin-bottom: 20px; }
+            
+            .contact-section h2 { font-size: 3rem; }
+            .social-links { flex-direction: column; gap: 15px; }
         }
     </style>
 </head>
@@ -525,17 +481,27 @@
         </div>
         <nav>
             <div class="nav-line"></div>
-            <a href="#">Inicio</a> <span>&bull;</span>
-            <a href="#">Elige tu Show</a> <span>&bull;</span>
-            <a href="#">Experiencia</a> <span>&bull;</span>
-            <a href="#cotizar" class="btn-cotizar">Cotizar</a>
+            <a href="#inicio">Inicio</a> <span class="separator">&bull;</span>
+            
+            <div class="dropdown">
+                <a href="#elige-tu-show">Elige tu Show ▼</a>
+                <div class="dropdown-content">
+                    <a href="#empresas">Empresas</a>
+                    <a href="#activaciones">Activaciones de Marca</a>
+                    <a href="#cumpleanos">Cumpleaños y Celebraciones</a>
+                    <a href="#colegios">Colegios y Eventos</a>
+                </div>
+            </div>
+            
+            <span class="separator">&bull;</span>
+            <a href="#experiencia">Experiencia</a> <span class="separator">&bull;</span>
+            <a href="#contacto" class="btn-cotizar">Cotizar</a>
         </nav>
     </header>
 
-    <main>
+    <main id="inicio" class="hero-section">
         <div class="content-left">
             <h1>MUCHO MÁS<br>QUE FÚTBOL</h1>
-            
             <p class="subtitle">
                 Conecta y sorprende con <br>
                 <span class="text-neon">Show de futbol freestyle</span> para:
@@ -543,59 +509,151 @@
             
             <div class="services-container">
                 <div class="services-grid">
-                    
-                    <a href="#empresas" class="service-card">
-                        <span class="card-text">Empresas</span>
-                    </a>
-                    
-                    <a href="#activaciones" class="service-card">
-                        <span class="card-text">Activa<br>tu marca</span>
-                    </a>
-                    
-                    <a href="#cumpleanos" class="service-card">
-                        <span class="card-text">Cumpleaños y<br>celebraciones</span>
-                    </a>
-                    
-                    <a href="#colegios" class="service-card">
-                        <span class="card-text">Colegios<br>y eventos</span>
-                    </a>
-
+                    <a href="#empresas" class="service-card"><span class="card-text">Empresas</span></a>
+                    <a href="#activaciones" class="service-card"><span class="card-text">Activa<br>tu marca</span></a>
+                    <a href="#cumpleanos" class="service-card"><span class="card-text">Cumpleaños y<br>celebraciones</span></a>
+                    <a href="#colegios" class="service-card"><span class="card-text">Colegios<br>y eventos</span></a>
                 </div>
             </div>
-            
         </div>
 
         <div class="image-right">
             <div class="hud-background"></div>
 
             <div class="fifa-slideshow">
-                <img src="evento1.jpg" class="slide slide-1">
-                <img src="evento2.jpeg" class="slide slide-2">
-                <img src="evento3.jpeg" class="slide slide-3">
-                <img src="evento4.jpg" class="slide slide-4">
-                <img src="evento5.jpeg" class="slide slide-5">
-                <img src="evento6.jpeg" class="slide slide-6">
-                <img src="evento7.jpeg" class="slide slide-7">
-                <img src="evento8.jpg" class="slide slide-8">
-                <img src="evento9.jpg" class="slide slide-9">
-                <img src="evento10.jpg" class="slide slide-10">
-                <img src="evento11.jpeg" class="slide slide-11">
-                <img src="evento12.jpeg" class="slide slide-12">
-                <img src="evento13.jpeg" class="slide slide-13">
-                <img src="evento14.jpeg" class="slide slide-14">
-                <img src="evento15.jpeg" class="slide slide-15">
-                <img src="evento16.jpeg" class="slide slide-16">
-                <img src="evento19.jpeg" class="slide slide-17">
+                <img src="evento1.jpg" class="slide-main sm-1">
+                <img src="evento2.jpeg" class="slide-main sm-2">
+                <img src="evento3.jpg" class="slide-main sm-3">
+                <img src="evento4.jpg" class="slide-main sm-4">
+                <img src="evento5.jpeg" class="slide-main sm-5">
+                <img src="evento6.jpeg" class="slide-main sm-6">
+                <img src="evento7.jpeg" class="slide-main sm-7">
+                <img src="evento8.jpg" class="slide-main sm-8">
+                <img src="evento9.jpg" class="slide-main sm-9">
+                <img src="evento10.jpg" class="slide-main sm-10">
+                <img src="evento11.jpeg" class="slide-main sm-11">
+                <img src="evento12.jpeg" class="slide-main sm-12">
+                <img src="evento13.jpeg" class="slide-main sm-13">
+                <img src="evento14.jpeg" class="slide-main sm-14">
+                <img src="evento15.jpeg" class="slide-main sm-15">
+                <img src="evento16.jpeg" class="slide-main sm-16">
+                <img src="evento17.jpeg" class="slide-main sm-17">
+                <img src="evento18.jpeg" class="slide-main sm-18">
+                <img src="evento19.jpeg" class="slide-main sm-19">
+                <img src="evento20.jpeg" class="slide-main sm-20">
             </div>
             
-            <video src="siluetalogo.mp4" poster="siluetaimagen.png" preload="auto" autoplay loop muted playsinline class="player-img"></video>
+            <video src="siluetalogo.mp4" autoplay loop muted playsinline class="player-img"></video>
+        </div>
+        
+        <div class="badge">
+            <video src="siluetalogo.mp4" autoplay loop muted playsinline class="badge-video"></video>
+            <p>Pipe Shows<br>Futbol Freestyle</p>
         </div>
     </main>
 
-    <div class="badge">
-        <video src="siluetalogo.mp4" autoplay loop muted playsinline class="badge-video"></video>
-        <p>Pipe Shows<br>Futbol Freestyle</p>
-    </div>
+    <section id="empresas" class="detail-section">
+        <div class="detail-content">
+            <div class="detail-text">
+                <h2>EMPRESAS</h2>
+                <p>Convierte tu oficina, bodega o lugar de trabajo en diversión. Rompe la rutina con una experiencia diferente que integra a todo el equipo, eleva la energía y genera un ambiente inolvidable.</p>
+            </div>
+            <div class="detail-visuals">
+                <div class="media-box">
+                    <img src="empresas1.jpg" class="slide-5 s5-1">
+                    <img src="empresas2.jpg" class="slide-5 s5-2">
+                    <img src="empresas3.jpg" class="slide-5 s5-3">
+                    <img src="empresas4.jpg" class="slide-5 s5-4">
+                    <img src="empresas5.jpg" class="slide-5 s5-5">
+                </div>
+                <div class="media-box">
+                    <video src="video-empresas.mp4" autoplay loop muted playsinline></video>
+                </div>
+                <a href="#contacto" class="btn-cotizar">Cotizar Evento Empresarial</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="activaciones" class="detail-section">
+        <div class="detail-content" style="flex-direction: row-reverse;"> <div class="detail-text">
+                <h2>ACTIVACIONES DE MARCA</h2>
+                <p>Usa el fútbol freestyle para llamar la atención, atraer más personas y generar oportunidades para vender más. El freestyle llama la atención, la atención genera tráfico, y el tráfico se convierte en ventas.</p>
+            </div>
+            <div class="detail-visuals">
+                <div class="media-box">
+                    <img src="marca1.jpg" class="slide-5 s5-1">
+                    <img src="marca2.jpg" class="slide-5 s5-2">
+                    <img src="marca3.jpg" class="slide-5 s5-3">
+                    <img src="marca4.jpg" class="slide-5 s5-4">
+                    <img src="marca5.jpg" class="slide-5 s5-5">
+                </div>
+                <div class="media-box">
+                    <video src="video-marca.mp4" autoplay loop muted playsinline></video>
+                </div>
+                <a href="#contacto" class="btn-cotizar">Cotizar Activación</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="cumpleanos" class="detail-section">
+        <div class="detail-content">
+            <div class="detail-text">
+                <h2>CUMPLEAÑOS Y CELEBRACIONES</h2>
+                <p>Lleva alegría y asombro a tu celebración. Un show interactivo donde todos participan y se sienten estrellas por un día. Diversión pura apta para todas las edades y públicos.</p>
+            </div>
+            <div class="detail-visuals">
+                <div class="media-box">
+                    <img src="cumpleanos1.jpg" class="slide-5 s5-1">
+                    <img src="cumpleanos2.jpg" class="slide-5 s5-2">
+                    <img src="cumpleanos3.jpg" class="slide-5 s5-3">
+                    <img src="cumpleanos4.jpg" class="slide-5 s5-4">
+                    <img src="cumpleanos5.jpg" class="slide-5 s5-5">
+                </div>
+                <div class="media-box">
+                    <video src="video-cumpleanos.mp4" autoplay loop muted playsinline></video>
+                </div>
+                <a href="#contacto" class="btn-cotizar">Cotizar Cumpleaños</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="colegios" class="detail-section">
+        <div class="detail-content" style="flex-direction: row-reverse;">
+            <div class="detail-text">
+                <h2>COLEGIOS Y EVENTOS</h2>
+                <p>Lleva la emoción a tu colegio conectando con el público masivo, eventos deportivos y actividades institucionales con pura energía y adrenalina.</p>
+            </div>
+            <div class="detail-visuals">
+                <div class="media-box">
+                    <img src="colegioseventos1.jpg" class="slide-5 s5-1">
+                    <img src="colegioseventos2.jpg" class="slide-5 s5-2">
+                    <img src="colegioseventos3.jpg" class="slide-5 s5-3">
+                    <img src="colegioseventos4.jpg" class="slide-5 s5-4">
+                    <img src="colegioseventos5.jpg" class="slide-5 s5-5">
+                </div>
+                <div class="media-box">
+                    <video src="video-colegios.mp4" autoplay loop muted playsinline></video>
+                </div>
+                <a href="#contacto" class="btn-cotizar">Cotizar Evento Masivo</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiencia" style="padding: 1px;"></section>
+
+    <section id="contacto" class="contact-section">
+        <h2>¿LISTO PARA SORPRENDER?</h2>
+        <p>Hablemos y diseñemos un show a tu medida.</p>
+        
+        <div class="social-links">
+            <a href="https://wa.me/573000000000" target="_blank" class="social-box">
+                <span class="social-icon">🟢</span> WhatsApp: +57 300 000 0000
+            </a>
+            <a href="#" target="_blank" class="social-box">
+                <span class="social-icon">🔵</span> Facebook Oficial
+            </a>
+        </div>
+    </section>
 
 </body>
 </html>
