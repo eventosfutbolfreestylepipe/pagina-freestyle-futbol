@@ -71,7 +71,7 @@
         nav {
             display: flex;
             align-items: center;
-            gap: 15px; /* Espacio ligeramente reducido */
+            gap: 15px;
         }
 
         .nav-line {
@@ -84,13 +84,13 @@
         nav a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.95rem; /* Fuente más pequeña */
+            font-size: 1.15rem; /* FUENTE MÁS GRANDE EN ESCRITORIO */
             transition: all 0.3s;
             position: relative;
             padding-bottom: 5px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            white-space: nowrap; /* Evita que el texto se rompa en dos líneas */
+            white-space: nowrap; 
         }
 
         /* Efecto línea inferior para enlaces normales */
@@ -120,9 +120,9 @@
         nav span {
             color: var(--text-muted);
             opacity: 0.5;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             display: inline-block;
-            transform: translateY(-2px); /* Centra el puntito verticalmente */
+            transform: translateY(-2px); 
         }
 
         /* --- Botón "Cotizar" Estilo Imagen --- */
@@ -130,10 +130,10 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 6px 14px;
+            padding: 8px 16px;
             margin-left: 5px;
             font-weight: 700;
-            font-size: 0.95rem; /* Fuente ajustada */
+            font-size: 1.15rem; /* FUENTE MÁS GRANDE */
             position: relative;
         }
 
@@ -240,7 +240,7 @@
             justify-content: center;
             position: relative;
             overflow: hidden;
-            min-height: 80px;
+            min-height: 90px;
         }
 
         .service-card::before {
@@ -264,7 +264,7 @@
         }
 
         .card-text {
-            font-size: 1.05rem; 
+            font-size: 1.2rem; /* FUENTE DE LOS CUADROS MÁS GRANDE */
             font-weight: 700;
             line-height: 1.2;
         }
@@ -412,27 +412,26 @@
             .nav-line { display: none; }
             
             nav { 
-                flex-wrap: nowrap; /* Fuerza a que todo quede en una línea */
+                flex-wrap: nowrap; 
                 justify-content: center;
-                gap: 6px; /* Reduce el espacio entre enlaces */
+                gap: 5px; /* Ajustado para que el texto grande quepa en 1 línea */
                 width: 100%;
             }
 
             nav a { 
-                font-size: 0.75rem; /* Letra ultra compacta para celular */
+                font-size: 0.85rem; /* FUENTE DEL MENÚ AUMENTADA EN MÓVIL */
             }
 
-            /* Los puntitos se muestran en celular */
             nav span { 
                 display: inline-block; 
-                font-size: 0.8rem; 
+                font-size: 0.9rem; 
                 margin: 0;
             }
 
             .btn-cotizar { 
                 margin-left: 0; 
-                padding: 4px 8px; 
-                font-size: 0.75rem; 
+                padding: 5px 8px; 
+                font-size: 0.85rem; 
             }
 
             main { 
@@ -460,16 +459,16 @@
                 position: relative;
             }
             
-            .services-grid { gap: 5px; } /* Ajuste del espacio entre cuadros */
+            .services-grid { gap: 6px; }
 
             .service-card {
-                padding: 10px 4px;
+                padding: 12px 4px;
                 flex: 1; 
-                min-height: 95px;
+                min-height: 100px;
             }
 
             .card-text {
-                font-size: 0.7rem; 
+                font-size: 0.85rem; /* FUENTE DE CUADROS AUMENTADA EN MÓVIL */
             }
 
             .image-right {
@@ -554,15 +553,15 @@
                     </a>
                     
                     <a href="#activaciones" class="service-card">
-                        <span class="card-text">Activación de marca<br>mejora tus ventas.</span>
+                        <span class="card-text">Activa<br>tu marca</span>
                     </a>
                     
                     <a href="#cumpleanos" class="service-card">
-                        <span class="card-text">Cumpleaños y celebraciones.</span>
+                        <span class="card-text">Cumpleaños y<br>celebraciones</span>
                     </a>
                     
                     <a href="#colegios" class="service-card">
-                        <span class="card-text">Colegios y eventos.</span>
+                        <span class="card-text">Colegios<br>y eventos</span>
                     </a>
 
                 </div>
