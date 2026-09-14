@@ -224,7 +224,7 @@
 
         .service-card {
             flex: 1;
-            background: rgba(255, 255, 255, 0.05); 
+            background: rgba(255, 255, 255, 0.05); /* Un poco más de contraste sobre fondo negro */
             border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 15px 10px;
             text-decoration: none;
@@ -317,11 +317,11 @@
             object-fit: cover; 
             opacity: 0;
             filter: grayscale(20%) contrast(110%);
-            /* 20 fotos x 1.5 segundos = 30 segundos totales */
+            /* Animación ajustada a 30 segundos totales (20 fotos x 1.5s cada una) */
             animation: fifaCrossfade 30s infinite;
         }
 
-        /* Retrasos matemáticos cada 1.5s */
+        /* Retrasos matemáticos cada 1.5s para 20 imágenes */
         .slide-1  { animation-delay: 0s; }
         .slide-2  { animation-delay: 1.5s; }
         .slide-3  { animation-delay: 3s; }
@@ -343,7 +343,7 @@
         .slide-19 { animation-delay: 27s; }
         .slide-20 { animation-delay: 28.5s; }
 
-        /* Porcentajes para mostrar cada imagen solo el 5% del tiempo (1.5s) */
+        /* Porcentajes para mostrar cada imagen un total de 1.5s (5% de 30s) */
         @keyframes fifaCrossfade {
             0%   { opacity: 0; }
             1.5% { opacity: 0.6; }
@@ -359,6 +359,7 @@
             left: -5%;   
             height: 70%; 
             z-index: 15; 
+            /* Quitamos el drop-shadow para que no se marque el cuadrado del video en escritorio */
         }
 
         /* --- Mini Logo --- */
@@ -380,6 +381,7 @@
             border: 1px solid rgba(0, 240, 255, 0.4);
             padding: 5px;
             background-color: transparent;
+            /* Con el fondo 100% negro en la página, esto funciona a la perfección */
             mix-blend-mode: lighten; 
         }
 
@@ -485,6 +487,7 @@
 
             .hud-background { display: none; }
 
+            /* POSICIÓN EXACTA MANTENIDA PARA EL VIDEO EN MÓVIL */
             .player-img {
                 position: absolute;
                 top: -50px;   
@@ -553,4 +556,52 @@
                     </a>
                     
                     <a href="#cumpleanos" class="service-card">
-                        <span class="card-text">Cumpleaños y
+                        <span class="card-text">Cumpleaños y<br>celebraciones</span>
+                    </a>
+                    
+                    <a href="#colegios" class="service-card">
+                        <span class="card-text">Colegios<br>y eventos</span>
+                    </a>
+
+                </div>
+            </div>
+            
+        </div>
+
+        <div class="image-right">
+            <div class="hud-background"></div>
+
+            <div class="fifa-slideshow">
+                <img src="evento1.jpg" class="slide slide-1">
+                <img src="evento2.jpeg" class="slide slide-2">
+                <img src="evento3.jpg" class="slide slide-3">
+                <img src="evento4.jpg" class="slide slide-4">
+                <img src="evento5.jpeg" class="slide slide-5">
+                <img src="evento6.jpeg" class="slide slide-6">
+                <img src="evento7.jpeg" class="slide slide-7">
+                <img src="evento8.jpg" class="slide slide-8">
+                <img src="evento9.jpg" class="slide slide-9">
+                <img src="evento10.jpg" class="slide slide-10">
+                <img src="evento11.jpeg" class="slide slide-11">
+                <img src="evento12.jpeg" class="slide slide-12">
+                <img src="evento13.jpeg" class="slide slide-13">
+                <img src="evento14.jpeg" class="slide slide-14">
+                <img src="evento15.jpeg" class="slide slide-15">
+                <img src="evento16.jpeg" class="slide slide-16">
+                <img src="evento17.jpeg" class="slide slide-17">
+                <img src="evento18.jpeg" class="slide slide-18">
+                <img src="evento19.jpeg" class="slide slide-19">
+                <img src="evento20.jpeg" class="slide slide-20">
+            </div>
+            
+            <video src="siluetalogo.mp4" autoplay loop muted playsinline class="player-img"></video>
+        </div>
+    </main>
+
+    <div class="badge">
+        <video src="siluetalogo.mp4" autoplay loop muted playsinline class="badge-video"></video>
+        <p>Pipe Shows<br>Futbol Freestyle</p>
+    </div>
+
+</body>
+</html>
