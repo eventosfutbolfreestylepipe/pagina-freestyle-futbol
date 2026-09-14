@@ -170,7 +170,6 @@
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.2) inset;
         }
 
-
         /* --- Hero Section --- */
         main {
             display: flex;
@@ -268,7 +267,6 @@
             line-height: 1.2;
         }
 
-
         /* --- Contenedor de Imagen y HUD (Lado Derecho) --- */
         .image-right {
             position: absolute;
@@ -355,21 +353,6 @@
             filter: drop-shadow(0 20px 30px rgba(0,0,0,0.9));
         }
 
-        /* APNG Spinning Ball */
-        .spinning-ball {
-            position: absolute;
-            top: 35%;  
-            left: 15%; 
-            width: 70px; 
-            z-index: 16; 
-            animation: spin 3s linear infinite;
-        }
-
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
         /* --- Mini Logo --- */
         .badge {
             position: absolute;
@@ -381,14 +364,16 @@
             z-index: 10;
         }
 
-.badge .badge-video {
-            width: 70px; 
-            height: 70px;
+        .badge .badge-video {
+            width: 90px; 
+            height: 90px;
             object-fit: cover; 
             clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
             border: 1px solid rgba(0, 240, 255, 0.4);
             padding: 5px;
-            mix-blend-mode: screen; /* Esto borra el fondo negro */
+            background-color: transparent;
+            /* Cambiado a lighten para eliminar mejor el fondo negro del video */
+            mix-blend-mode: lighten; 
         }
 
         .badge p {
@@ -493,7 +478,7 @@
 
             .hud-background { display: none; }
 
-          .player-img {
+            .player-img {
                 position: absolute;
                 top: -80px;   
                 right: 7px;
@@ -502,16 +487,6 @@
                 height: 350px; 
                 width: auto;
                 z-index: 15;
-            }
-
-            /* Posición sugerida para encajar en el pie (puedes ajustar) */
-            .spinning-ball {
-                position: absolute;
-                top: -10px;      
-                right: 25px;     
-                left: auto;
-                width: 55px;
-                z-index: 16;
             }
 
             .fifa-slideshow {
@@ -602,15 +577,12 @@
             </div>
             
             <img src="mi-foto.png" alt="Pipe" class="player-img">            
-            
-            <!-- Balón actualizado a balon.png -->
-            <img src="balon.png" alt="Balón girando" class="spinning-ball">
         </div>
     </main>
 
-  <div class="badge">
+    <div class="badge">
         <video src="siluetalogo.mp4" autoplay loop muted playsinline class="badge-video"></video>
-        <p>Mini Logo<br>Authenticity Badge</p>
+        <p>Pipe Shows<br>Futbol Freestyle</p>
     </div>
 
 </body>
