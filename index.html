@@ -317,38 +317,35 @@
             object-fit: cover; 
             opacity: 0;
             filter: grayscale(20%) contrast(110%);
-            /* Animación ajustada a 30 segundos totales (20 fotos x 1.5s cada una) */
-            animation: fifaCrossfade 30s infinite;
+            /* Animación ajustada a 30.6 segundos totales (17 fotos x 1.8s cada una) */
+            animation: fifaCrossfade 30.6s infinite;
         }
 
-        /* Retrasos matemáticos cada 1.5s para 20 imágenes */
+        /* Retrasos matemáticos cada 1.8s para las 17 imágenes */
         .slide-1  { animation-delay: 0s; }
-        .slide-2  { animation-delay: 1.5s; }
-        .slide-3  { animation-delay: 3s; }
-        .slide-4  { animation-delay: 4.5s; }
-        .slide-5  { animation-delay: 6s; }
-        .slide-6  { animation-delay: 7.5s; }
-        .slide-7  { animation-delay: 9s; }
-        .slide-8  { animation-delay: 10.5s; }
-        .slide-9  { animation-delay: 12s; }
-        .slide-10 { animation-delay: 13.5s; }
-        .slide-11 { animation-delay: 15s; }
-        .slide-12 { animation-delay: 16.5s; }
-        .slide-13 { animation-delay: 18s; }
-        .slide-14 { animation-delay: 19.5s; }
-        .slide-15 { animation-delay: 21s; }
-        .slide-16 { animation-delay: 22.5s; }
-        .slide-17 { animation-delay: 24s; }
-        .slide-18 { animation-delay: 25.5s; }
-        .slide-19 { animation-delay: 27s; }
-        .slide-20 { animation-delay: 28.5s; }
+        .slide-2  { animation-delay: 1.8s; }
+        .slide-3  { animation-delay: 3.6s; }
+        .slide-4  { animation-delay: 5.4s; }
+        .slide-5  { animation-delay: 7.2s; }
+        .slide-6  { animation-delay: 9s; }
+        .slide-7  { animation-delay: 10.8s; }
+        .slide-8  { animation-delay: 12.6s; }
+        .slide-9  { animation-delay: 14.4s; }
+        .slide-10 { animation-delay: 16.2s; }
+        .slide-11 { animation-delay: 18s; }
+        .slide-12 { animation-delay: 19.8s; }
+        .slide-13 { animation-delay: 21.6s; }
+        .slide-14 { animation-delay: 23.4s; }
+        .slide-15 { animation-delay: 25.2s; }
+        .slide-16 { animation-delay: 27s; }
+        .slide-17 { animation-delay: 28.8s; }
 
-        /* Porcentajes para mostrar cada imagen un total de 1.5s (5% de 30s) */
+        /* Porcentajes ajustados a la nueva cantidad (5.8% es approx el tiempo de cada foto) */
         @keyframes fifaCrossfade {
             0%   { opacity: 0; }
-            1.5% { opacity: 0.6; }
-            3.5% { opacity: 0.6; }
-            5%   { opacity: 0; }
+            1%   { opacity: 0.6; }
+            4%   { opacity: 0.6; }
+            5.8% { opacity: 0; }
             100% { opacity: 0; }
         }
 
@@ -494,7 +491,7 @@
                 right: -8px;
                 left: auto;
                 bottom: auto;
-                height: 275px; 
+                height: 282px; 
                 width: auto;
                 z-index: 15;
             }
@@ -574,7 +571,7 @@
             <div class="fifa-slideshow">
                 <img src="evento1.jpg" class="slide slide-1">
                 <img src="evento2.jpeg" class="slide slide-2">
-                <img src="evento3.jpg" class="slide slide-3">
+                <img src="evento3.jpeg" class="slide slide-3">
                 <img src="evento4.jpg" class="slide slide-4">
                 <img src="evento5.jpeg" class="slide slide-5">
                 <img src="evento6.jpeg" class="slide slide-6">
@@ -588,10 +585,7 @@
                 <img src="evento14.jpeg" class="slide slide-14">
                 <img src="evento15.jpeg" class="slide slide-15">
                 <img src="evento16.jpeg" class="slide slide-16">
-                <img src="evento17.jpeg" class="slide slide-17">
-                <img src="evento18.jpeg" class="slide slide-18">
-                <img src="evento19.jpeg" class="slide slide-19">
-                <img src="evento20.jpeg" class="slide slide-20">
+                <img src="evento19.jpeg" class="slide slide-17">
             </div>
             
             <video src="siluetalogo.mp4" autoplay loop muted playsinline class="player-img"></video>
