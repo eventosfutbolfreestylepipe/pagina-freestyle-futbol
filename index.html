@@ -10,7 +10,7 @@
         :root {
             /* FONDO PURAMENTE NEGRO PARA CAMUFLAR EL VIDEO */
             --bg-dark: #000000; 
-            --bg-section: #0a0d10;
+            --bg-section: #0a0d10; 
             --text-main: #ffffff;
             --text-muted: #a0aec0;
             --accent-hud: #4a5568;
@@ -22,7 +22,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            scroll-behavior: smooth;
+            scroll-behavior: smooth; 
         }
 
         body {
@@ -32,14 +32,18 @@
             overflow-x: hidden;
         }
 
-        /* --- Menú Minimalista / Estilo Game (RESTAURADO A LA PERFECCIÓN) --- */
+        /* --- Menú Minimalista / Estilo Game --- */
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 30px 60px;
-            position: relative; /* Restaurado a como estaba antes */
-            z-index: 20;
+            position: fixed; 
+            top: 0; left: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
         }
 
         .logo {
@@ -88,6 +92,7 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             white-space: nowrap; 
+            cursor: pointer;
         }
 
         nav a:not(.btn-cotizar)::after {
@@ -111,14 +116,14 @@
             display: inline-block; transform: translateY(-2px); 
         }
 
-        /* --- Menú Desplegable (Dropdown) --- */
+        /* --- Menú Desplegable Controlado por JS --- */
         .dropdown {
             position: relative;
             display: inline-block;
         }
 
         .dropdown-content {
-            display: none;
+            display: none; /* Oculto por defecto, se activa con JS */
             position: absolute;
             top: 100%;
             left: 50%;
@@ -132,7 +137,8 @@
             border-radius: 4px;
         }
 
-        .dropdown:hover .dropdown-content {
+        /* Clase añadida vía Javascript para mostrar el menú */
+        .dropdown-content.show-dropdown {
             display: flex;
             flex-direction: column;
         }
@@ -152,7 +158,7 @@
             color: var(--neon-blue);
         }
 
-        /* --- Botón "Cotizar" Estilo Imagen --- */
+        /* --- Botón "Cotizar" Principal (Navbar) --- */
         .btn-cotizar {
             display: inline-flex; align-items: center; justify-content: center;
             padding: 8px 16px; margin-left: 5px; font-weight: 700; font-size: 1.15rem; 
@@ -180,10 +186,37 @@
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.2) inset;
         }
 
-        /* --- Sección PORTADA (Inicio) Restaurada --- */
+        /* --- Botón "Cotizar" Estilizado para cada sección --- */
+        .btn-section-cotizar {
+            background: rgba(0, 240, 255, 0.05);
+            border: 2px solid var(--neon-blue);
+            color: var(--text-main);
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 6px;
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.2), inset 0 0 10px rgba(0, 240, 255, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: fit-content;
+            margin: 20px auto 0;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .btn-section-cotizar:hover {
+            background: var(--neon-blue);
+            color: #000000;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* --- Sección PORTADA (Inicio) --- */
         .hero-section {
-            display: flex; padding: 40px 60px; /* Restaurado a como estaba */
-            flex-grow: 1; position: relative; z-index: 10;
+            display: flex; padding: 140px 60px 40px; 
+            min-height: 100vh; position: relative; z-index: 10;
         }
 
         .content-left {
@@ -203,7 +236,6 @@
             color: var(--neon-blue); font-weight: 700; text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); font-size: 1.8rem;
         }
 
-        /* Cuadros de Servicios (Inicio) */
         .services-container { width: 100%; max-width: 600px; }
         .services-grid { display: flex; gap: 12px; }
 
@@ -225,7 +257,6 @@
         }
 
         .service-card:hover::before { opacity: 1; }
-
         .card-text { font-size: 1.2rem; font-weight: 700; line-height: 1.2; }
 
         /* Contenedor Lado Derecho (Inicio) */
@@ -249,7 +280,6 @@
             mask-image: radial-gradient(circle, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 70%); pointer-events: none; 
         }
 
-        /* Animación original 20 imágenes */
         .slide-main {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; 
             opacity: 0; filter: grayscale(20%) contrast(110%);
@@ -291,9 +321,7 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .detail-section:nth-child(even) {
-            background-color: var(--bg-section); 
-        }
+        .detail-section:nth-child(even) { background-color: var(--bg-section); }
 
         .detail-content {
             display: flex;
@@ -303,94 +331,53 @@
             gap: 50px;
         }
 
-        /* CLASE ESPECIAL PARA QUE SOLO EN PC SE INVIERTA (SOLUCIONA EL DAÑO DE CELULAR) */
         @media (min-width: 769px) {
-            .detail-content.reverse-desktop {
-                flex-direction: row-reverse;
-            }
+            .detail-content.reverse-desktop { flex-direction: row-reverse; }
         }
 
-        .detail-text {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+        .detail-text { flex: 1; display: flex; flex-direction: column; justify-content: center; }
 
         .detail-text h2 {
-            font-family: 'Teko', sans-serif;
-            font-size: 4.5rem;
-            line-height: 0.9;
-            color: var(--neon-blue);
-            margin-bottom: 20px;
-            text-transform: uppercase;
+            font-family: 'Teko', sans-serif; font-size: 4.5rem; line-height: 0.9;
+            color: var(--neon-blue); margin-bottom: 20px; text-transform: uppercase;
         }
 
         .detail-text p {
-            font-size: 1.4rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-            margin-bottom: 40px;
+            font-size: 1.4rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 40px;
         }
 
         .detail-visuals {
-            flex: 1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            position: relative;
+            flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; position: relative;
         }
 
-        /* Cuadros multimedia (Fotos y Video) */
         .media-box {
-            position: relative;
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            border-radius: 8px;
-            overflow: hidden;
-            aspect-ratio: 4/5; 
-            background: #111;
+            position: relative; border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 8px;
+            overflow: hidden; aspect-ratio: 4/5; background: #111;
         }
 
-        .media-box video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .media-box video { width: 100%; height: 100%; object-fit: cover; }
 
-        /* Animación para 5 fotos cada 1.5s (Total 7.5s) */
         .slide-5 {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
             opacity: 0; animation: fadeFive 7.5s infinite;
         }
         
-        .s5-1 { animation-delay: 0s; }
-        .s5-2 { animation-delay: 1.5s; }
-        .s5-3 { animation-delay: 3s; }
-        .s5-4 { animation-delay: 4.5s; }
-        .s5-5 { animation-delay: 6s; }
+        .s5-1 { animation-delay: 0s; } .s5-2 { animation-delay: 1.5s; } .s5-3 { animation-delay: 3s; }
+        .s5-4 { animation-delay: 4.5s; } .s5-5 { animation-delay: 6s; }
 
         @keyframes fadeFive {
-            0%   { opacity: 0; }
-            4%   { opacity: 1; }
-            16%  { opacity: 1; }
-            20%  { opacity: 0; }
-            100% { opacity: 0; }
+            0%   { opacity: 0; } 4%   { opacity: 1; } 16%  { opacity: 1; } 20%  { opacity: 0; } 100% { opacity: 0; }
         }
 
-        .detail-visuals .btn-cotizar {
-            grid-column: 1 / -1; /* SOLUCIONA EL BOTÓN APLASTADO */
-            margin-top: 10px;
-            text-align: center;
-            white-space: nowrap; /* Impide que el texto se rompa */
+        .detail-visuals .btn-section-cotizar {
+            grid-column: 1 / -1; 
         }
-
 
         /* =========================================
            SECCIÓN DE CONTACTO
            ========================================= */
         .contact-section {
-            padding: 100px 60px;
-            text-align: center;
+            padding: 100px 60px; text-align: center;
             background: linear-gradient(to top, #0a0d10, #000000);
             border-top: 1px solid rgba(0, 240, 255, 0.2);
         }
@@ -400,19 +387,34 @@
             color: var(--neon-blue); text-transform: uppercase; margin-bottom: 20px;
         }
 
-        .contact-section p {
-            font-size: 1.5rem; color: var(--text-muted); margin-bottom: 40px;
+        /* Cuadro Biografía Confianza */
+        .bio-box {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid var(--neon-blue);
+            padding: 25px 35px;
+            border-radius: 0 8px 8px 0;
+            text-align: left;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .social-links {
-            display: flex; justify-content: center; gap: 30px; margin-bottom: 50px;
+        .bio-text {
+            font-size: 1.2rem; color: #d1d5db; line-height: 1.6;
         }
+
+        .bio-text strong {
+            color: var(--neon-blue); font-size: 1.3rem; font-weight: 700;
+        }
+
+        .contact-section p { font-size: 1.5rem; color: var(--text-muted); margin-bottom: 40px; }
+
+        .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 50px; }
 
         .social-box {
-            display: flex; align-items: center; gap: 15px;
-            padding: 15px 30px; border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 50px; text-decoration: none; color: white;
-            font-size: 1.3rem; font-weight: 700; transition: all 0.3s;
+            display: flex; align-items: center; gap: 15px; padding: 15px 30px; 
+            border: 1px solid rgba(255,255,255,0.2); border-radius: 50px; 
+            text-decoration: none; color: white; font-size: 1.3rem; font-weight: 700; transition: all 0.3s;
         }
 
         .social-box:hover {
@@ -421,7 +423,6 @@
         }
 
         .social-icon { font-size: 1.8rem; }
-
 
         /* =========================================
            ADAPTACIÓN PARA CELULARES
@@ -432,23 +433,33 @@
         }
 
         @media (max-width: 768px) {
-            /* Encabezado restaurado a su perfección móvil anterior */
+            /* Navbar Móvil Perfectamente Alineada */
             header { flex-direction: column; padding: 15px; gap: 15px; }
             .logo { align-items: center; text-align: center; }
             .logo-sub { font-size: 0.8rem; } .logo-main { font-size: 2rem; }
             
             .nav-line { display: none; }
-            nav { flex-wrap: nowrap; justify-content: center; gap: 5px; width: 100%; }
+            
+            nav { 
+                flex-wrap: nowrap; 
+                justify-content: center; 
+                align-items: center;
+                gap: 8px; 
+                width: 100%; 
+            }
             nav a { font-size: 0.85rem; }
             nav span.separator { display: inline-block; font-size: 0.9rem; margin: 0; }
             
-            /* Botón cotizar del menú restaurado al tamaño original */
-            .btn-cotizar { margin-left: 0; padding: 5px 8px; font-size: 0.85rem; }
+            .dropdown-content { 
+                min-width: 160px; /* Menú desplegable más pequeño */
+                padding: 5px 0;
+            }
+            .dropdown-content a { padding: 10px; font-size: 0.85rem; }
 
-            .dropdown-content { position: static; transform: none; min-width: 100%; text-align: center; }
+            .btn-cotizar { margin-left: 0; padding: 6px 12px; font-size: 0.9rem; }
 
-            /* Hero Section restaurado */
-            .hero-section { flex-direction: column; padding: 20px; }
+            /* Hero Section Móvil */
+            .hero-section { flex-direction: column; padding: 120px 20px 20px; }
             .content-left { width: 100%; align-items: flex-start; text-align: left; margin-bottom: 5px; }
             h1, .subtitle { max-width: 55%; } h1 { font-size: 2.5rem; margin-bottom: 10px; }
             .subtitle { font-size: 1rem; margin-bottom: 15px; line-height: 1.3;}
@@ -462,7 +473,6 @@
             .image-right { position: static; width: 100%; margin-top: 20px; display: flex; flex-direction: column; }
             .hud-background { display: none; }
             
-            /* Posición del video en móvil intocable */
             .player-img {
                 position: absolute; top: -50px; right: -8px; left: auto; bottom: auto; height: 282px; width: auto; z-index: 15;
             }
@@ -474,16 +484,59 @@
             }
             .badge { position: relative; bottom: auto; left: auto; justify-content: center; padding-bottom: 30px; margin-top: 10px; }
 
-            /* Secciones de Detalles Móvil ARREGLADAS (Ya no se ven aplastadas) */
-            .detail-section { padding: 60px 20px; }
-            .detail-content { flex-direction: column; gap: 30px; } /* Fuerzo la columna para matar el error */
-            .detail-text h2 { font-size: 2.8rem; text-align: center; }
-            .detail-text p { font-size: 1.1rem; text-align: center; margin-bottom: 20px; }
+            /* --- MODO CELULAR PARA LOS SERVICIOS (El layout exacto que pediste) --- */
+            .detail-section { padding: 50px 20px; }
             
-            /* Solución a las fotos pequeñas en celular: Las pongo una arriba de otra */
-            .detail-visuals { grid-template-columns: 1fr; }
+            .detail-content, .detail-content.reverse-desktop {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+            }
+
+            .detail-text, .detail-visuals { display: contents; }
             
+            .detail-text h2 { 
+                grid-column: 1 / -1; 
+                font-size: 2.8rem; 
+                text-align: center; 
+                margin-bottom: 5px; 
+            }
+            
+            .pic-box {
+                grid-column: 1 / 2;
+                grid-row: 2 / 3;
+                height: 100%;
+            }
+            
+            .detail-text p { 
+                grid-column: 2 / 3;
+                grid-row: 2 / 3;
+                font-size: 0.9rem; 
+                text-align: left; 
+                margin: 0; 
+                align-self: center; /* Alinea el texto perfecto junto a las fotos */
+            }
+
+            .vid-box {
+                grid-column: 1 / -1;
+                grid-row: 3 / 4;
+                aspect-ratio: 16/9; /* Video ancho en celular */
+                margin-top: 10px;
+            }
+
+            .btn-section-cotizar {
+                grid-column: 1 / -1;
+                grid-row: 4 / 5;
+                margin-top: 5px;
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+            /* ---------------------------------------------------- */
+
             .contact-section h2 { font-size: 3rem; }
+            .bio-box { padding: 15px 20px; border-left-width: 3px; margin-bottom: 30px; }
+            .bio-text { font-size: 1rem; }
+            .bio-text strong { font-size: 1.1rem; }
             .social-links { flex-direction: column; gap: 15px; }
         }
     </style>
@@ -497,11 +550,12 @@
         </div>
         <nav>
             <div class="nav-line"></div>
-            <a href="#inicio">Inicio</a> <span class="separator">&bull;</span>
+            <a href="#inicio">Inicio</a> 
+            <span class="separator">&bull;</span>
             
             <div class="dropdown">
-                <a href="#elige-tu-show">Elige tu Show ▼</a>
-                <div class="dropdown-content">
+                <a href="#" id="dropdownToggle">Elige tu Show</a>
+                <div class="dropdown-content" id="dropdownMenu">
                     <a href="#empresas">Empresas</a>
                     <a href="#activaciones">Activaciones de Marca</a>
                     <a href="#cumpleanos">Cumpleaños y Celebraciones</a>
@@ -560,7 +614,7 @@
     </main>
     
     <div class="badge">
-        <video src="siluetalogo.mp4" autoplay loop muted playsinline class="badge-video"></video>
+        <video src="siluetalogo.mp4" poster="siluetaimagen.png" autoplay loop muted playsinline class="badge-video"></video>
         <p>Pipe Shows<br>Futbol Freestyle</p>
     </div>
 
@@ -571,17 +625,17 @@
                 <p>Convierte tu oficina, bodega o lugar de trabajo en diversión. Rompe la rutina con una experiencia diferente que integra a todo el equipo, eleva la energía y genera un ambiente inolvidable.</p>
             </div>
             <div class="detail-visuals">
-                <div class="media-box">
+                <div class="media-box pic-box">
                     <img src="empresas1.jpg" class="slide-5 s5-1">
                     <img src="empresas2.jpg" class="slide-5 s5-2">
                     <img src="empresas3.jpg" class="slide-5 s5-3">
                     <img src="empresas4.jpg" class="slide-5 s5-4">
                     <img src="empresas5.jpg" class="slide-5 s5-5">
                 </div>
-                <div class="media-box">
-                    <video src="video-empresas.mp4" autoplay loop muted playsinline></video>
+                <div class="media-box vid-box">
+                    <video src="video-empresas.mp4" poster="poster-empresas.jpg" autoplay loop muted playsinline></video>
                 </div>
-                <a href="#contacto" class="btn-cotizar">Cotizar Evento Empresarial</a>
+                <a href="#contacto" class="btn-section-cotizar">Cotizar Evento Empresarial</a>
             </div>
         </div>
     </section>
@@ -593,17 +647,17 @@
                 <p>Usa el fútbol freestyle para llamar la atención, atraer más personas y generar oportunidades para vender más. El freestyle llama la atención, la atención genera tráfico, y el tráfico se convierte en ventas.</p>
             </div>
             <div class="detail-visuals">
-                <div class="media-box">
+                <div class="media-box pic-box">
                     <img src="marca1.jpg" class="slide-5 s5-1">
                     <img src="marca2.jpg" class="slide-5 s5-2">
                     <img src="marca3.jpg" class="slide-5 s5-3">
                     <img src="marca4.jpg" class="slide-5 s5-4">
                     <img src="marca5.jpg" class="slide-5 s5-5">
                 </div>
-                <div class="media-box">
-                    <video src="video-marca.mp4" autoplay loop muted playsinline></video>
+                <div class="media-box vid-box">
+                    <video src="video-marca.mp4" poster="poster-marca.jpg" autoplay loop muted playsinline></video>
                 </div>
-                <a href="#contacto" class="btn-cotizar">Cotizar Activación</a>
+                <a href="#contacto" class="btn-section-cotizar">Cotizar Activación</a>
             </div>
         </div>
     </section>
@@ -615,17 +669,17 @@
                 <p>Lleva alegría y asombro a tu celebración. Un show interactivo donde todos participan y se sienten estrellas por un día. Diversión pura apta para todas las edades y públicos.</p>
             </div>
             <div class="detail-visuals">
-                <div class="media-box">
+                <div class="media-box pic-box">
                     <img src="cumpleanos1.jpg" class="slide-5 s5-1">
                     <img src="cumpleanos2.jpg" class="slide-5 s5-2">
                     <img src="cumpleanos3.jpg" class="slide-5 s5-3">
                     <img src="cumpleanos4.jpg" class="slide-5 s5-4">
                     <img src="cumpleanos5.jpg" class="slide-5 s5-5">
                 </div>
-                <div class="media-box">
-                    <video src="video-cumpleanos.mp4" autoplay loop muted playsinline></video>
+                <div class="media-box vid-box">
+                    <video src="video-cumpleanos.mp4" poster="poster-cumpleanos.jpg" autoplay loop muted playsinline></video>
                 </div>
-                <a href="#contacto" class="btn-cotizar">Cotizar Cumpleaños</a>
+                <a href="#contacto" class="btn-section-cotizar">Cotizar Cumpleaños</a>
             </div>
         </div>
     </section>
@@ -637,23 +691,30 @@
                 <p>Lleva la emoción a tu colegio conectando con el público masivo, eventos deportivos y actividades institucionales con pura energía y adrenalina.</p>
             </div>
             <div class="detail-visuals">
-                <div class="media-box">
+                <div class="media-box pic-box">
                     <img src="colegioseventos1.jpg" class="slide-5 s5-1">
                     <img src="colegioseventos2.jpg" class="slide-5 s5-2">
                     <img src="colegioseventos3.jpg" class="slide-5 s5-3">
                     <img src="colegioseventos4.jpg" class="slide-5 s5-4">
                     <img src="colegioseventos5.jpg" class="slide-5 s5-5">
                 </div>
-                <div class="media-box">
-                    <video src="video-colegios.mp4" autoplay loop muted playsinline></video>
+                <div class="media-box vid-box">
+                    <video src="video-colegios.mp4" poster="poster-colegios.jpg" autoplay loop muted playsinline></video>
                 </div>
-                <a href="#contacto" class="btn-cotizar">Cotizar Evento Masivo</a>
+                <a href="#contacto" class="btn-section-cotizar">Cotizar Evento Masivo</a>
             </div>
         </div>
     </section>
 
     <section id="contacto" class="contact-section">
         <h2>¿LISTO PARA SORPRENDER?</h2>
+        
+        <div class="bio-box">
+            <p class="bio-text">
+                <strong>¡Hola! Soy Pipe.</strong> Llevo más de 8 años como profesional de fútbol freestyle, llevando mi arte a cientos de escenarios, eventos y activaciones de marca. Mi objetivo no es solo mostrar trucos asombrosos, sino tener un manejo de público excepcional para conectar con tu gente, elevar la energía y garantizar una experiencia que todos recordarán. ¡Hagamos que tu evento sea un éxito!
+            </p>
+        </div>
+
         <p>Hablemos y diseñemos un show a tu medida.</p>
         
         <div class="social-links">
@@ -666,5 +727,32 @@
         </div>
     </section>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('dropdownToggle');
+            const menu = document.getElementById('dropdownMenu');
+            
+            // Abrir / Cerrar al darle clic a "Elige tu Show"
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault(); // Evita que la página salte hacia arriba
+                menu.classList.toggle('show-dropdown');
+            });
+
+            // Cerrar el menú si haces clic en cualquier otra parte de la pantalla
+            document.addEventListener('click', (e) => {
+                if(!toggle.contains(e.target) && !menu.contains(e.target)) {
+                    menu.classList.remove('show-dropdown');
+                }
+            });
+
+            // Cerrar el menú si le das clic a una de las opciones del menú
+            const links = menu.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.remove('show-dropdown');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
