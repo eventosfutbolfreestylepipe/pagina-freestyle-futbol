@@ -16,7 +16,29 @@
             --glow-hud: rgba(138, 180, 248, 0.4);
             --neon-blue: #00f0ff;
         }
+        
+.efecto-balon {
+            position: absolute;
+            width: 80px; 
+            height: 80px;
+            /* Estos números debes ajustarlos hasta que la luz caiga sobre tu balón */
+            top: -20px; 
+            right: 15px; 
+            z-index: 14; /* Queda justo detrás del balón original o 16 para que quede encima */
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0,240,255,0.4) 0%, rgba(0,240,255,0) 70%);
+            box-shadow: 0 0 20px 10px rgba(0, 240, 255, 0.3);
+            animation: palpitar 1.5s infinite alternate;
+            pointer-events: none; /* Para que no estorbe si se toca la pantalla */
+        }
 
+        @keyframes palpitar {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            100% { transform: scale(1.3); opacity: 1; }
+        }
+
+
+        
         * {
             margin: 0;
             padding: 0;
@@ -576,7 +598,8 @@
                 <img src="evento11.jpg" class="slide slide-11">
             </div>
             
-            <img src="mi-foto.png" alt="Pipe" class="player-img">            
+            <img src="mi-foto.png" alt="Pipe" class="player-img">
+            <div class="efecto-balon"></div> <!-- ESTE ES EL NUEVO DESTELLO -->
         </div>
     </main>
 
