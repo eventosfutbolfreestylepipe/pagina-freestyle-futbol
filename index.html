@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pipe Shows - Futbol Freestyle Colombia</title>
-    <!-- Fuentes estilo Tech / Sport -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Teko:wght@500;600&display=swap" rel="stylesheet">
     
     <style>
@@ -387,26 +386,31 @@
             color: var(--neon-blue); text-transform: uppercase; margin-bottom: 20px;
         }
 
-        /* Cuadro Biografía Confianza - MUCHO MÁS COMPACTO Y HORIZONTAL */
+        /* Cuadro Biografía Confianza - DISEÑO ESTRICTAMENTE HORIZONTAL PARA ESCRITORIO */
         .bio-box {
-            max-width: 900px;
-            margin: 0 auto 30px;
+            max-width: 800px;
+            margin: 0 auto 40px;
             background: rgba(255, 255, 255, 0.03);
-            border-left: 3px solid var(--neon-blue);
-            padding: 15px 25px; /* Reducido drásticamente para quitar altura */
-            border-radius: 0 8px 8px 0;
-            text-align: left;
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 20px 40px;
+            border-radius: 8px;
+            text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
 
         .bio-text {
-            font-size: 0.95rem; /* Letra mucho más pequeña */
+            font-size: 1.1rem; 
             color: #d1d5db; 
-            line-height: 1.4;
+            line-height: 1.5; 
+            margin: 0;
         }
 
         .bio-text strong {
-            color: var(--neon-blue); font-size: 1rem; font-weight: 700;
+            color: var(--neon-blue); 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            display: block; 
+            margin-bottom: 10px;
         }
 
         .contact-section p { font-size: 1.5rem; color: var(--text-muted); margin-bottom: 40px; }
@@ -552,21 +556,29 @@
 
             .contact-section h2 { font-size: 3rem; }
             
-            /* AJUSTE BIOGRAFÍA EN MÓVIL (COMPACTO Y HORIZONTAL) */
+            /* AJUSTE BIOGRAFÍA EN MÓVIL: ESTRICTAMENTE HORIZONTAL (ESTILO VIDEO) */
             .bio-box { 
-                padding: 10px 12px; 
-                border-left-width: 2px; 
+                width: 100%; 
+                aspect-ratio: 16/9; /* Forza forma horizontal estricta de un video */
+                padding: 10px 15px; 
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                border: 1px solid rgba(0, 240, 255, 0.2); 
                 margin-bottom: 25px; 
-                max-width: 95%; /* Ocupa casi todo el ancho para aplanarse */
-                margin-left: auto;
-                margin-right: auto;
+                background: #111; /* Color de fondo tipo video */
             }
+
             .bio-text { 
-                font-size: 0.75rem; /* Letra ultra rápida de leer */
+                font-size: 0.75rem; /* Letra ultracompacta para que no desborde verticalmente */
                 line-height: 1.3; 
+                text-align: center;
             }
+
             .bio-text strong { 
-                font-size: 0.8rem; 
+                font-size: 1rem; 
+                margin-bottom: 6px;
+                display: block;
             }
 
             .social-links { flex-direction: column; gap: 15px; }
@@ -575,7 +587,6 @@
 </head>
 <body>
 
-    <!-- MENÚ SUPERIOR -->
     <header>
         <div class="logo">
             <span class="logo-sub">Futbol Freestyle Colombia</span>
@@ -586,9 +597,7 @@
             <a href="#inicio">Inicio</a> 
             <span class="separator">&bull;</span>
             
-            <!-- ELIGE TU SHOW (Menú Desplegable con JS) -->
             <div class="dropdown">
-                <!-- Se quitó la flechita y se le puso un ID para el script -->
                 <a href="#" id="dropdownToggle">Elige tu Show</a>
                 <div class="dropdown-content" id="dropdownMenu">
                     <a href="#empresas">Empresas</a>
@@ -603,7 +612,6 @@
         </nav>
     </header>
 
-    <!-- 1. SECCIÓN INICIO / PORTADA -->
     <main id="inicio" class="hero-section">
         <div class="content-left">
             <h1>MUCHO MÁS<br>QUE FÚTBOL</h1>
@@ -654,7 +662,6 @@
         <p>Pipe Shows<br>Futbol Freestyle</p>
     </div>
 
-    <!-- 2. SECCIÓN EMPRESAS -->
     <section id="empresas" class="detail-section">
         <div class="detail-content">
             <div class="detail-text">
@@ -677,7 +684,6 @@
         </div>
     </section>
 
-    <!-- 3. SECCIÓN ACTIVACIONES -->
     <section id="activaciones" class="detail-section">
         <div class="detail-content reverse-desktop">
             <div class="detail-text">
@@ -700,7 +706,6 @@
         </div>
     </section>
 
-    <!-- 4. SECCIÓN CUMPLEAÑOS -->
     <section id="cumpleanos" class="detail-section">
         <div class="detail-content">
             <div class="detail-text">
@@ -723,7 +728,6 @@
         </div>
     </section>
 
-    <!-- 5. SECCIÓN COLEGIOS -->
     <section id="colegios" class="detail-section">
         <div class="detail-content reverse-desktop">
             <div class="detail-text">
@@ -746,14 +750,13 @@
         </div>
     </section>
 
-    <!-- 6. SECCIÓN CONTACTO / FINAL -->
     <section id="contacto" class="contact-section">
         <h2>¿LISTO PARA SORPRENDER?</h2>
         
-        <!-- Párrafo de confianza (Biografía profesional) -->
         <div class="bio-box">
             <p class="bio-text">
-                <strong>¡Hola! Soy Pipe.</strong> Llevo más de 8 años como profesional de fútbol freestyle, llevando mi arte a cientos de escenarios, eventos empresariales y activaciones de marca. Mi objetivo no es solo mostrar trucos asombrosos, sino tener un manejo de público excepcional para conectar genuinamente con tu gente, elevar la energía del lugar y garantizar una experiencia que todos recordarán. ¡Hagamos que tu evento sea un éxito rotundo!
+                <strong>¡HOLA! SOY PIPE.</strong>
+                <span>Más de 8 años como profesional de fútbol freestyle en escenarios, eventos y activaciones de marca. Más allá de trucos asombrosos, mi objetivo es el manejo excepcional del público: conectar con tu gente, elevar la energía y garantizar una experiencia inolvidable. ¡Hagamos de tu evento un éxito rotundo!</span>
             </p>
         </div>
 
@@ -769,7 +772,6 @@
         </div>
     </section>
 
-    <!-- SCRIPT PARA EL MENÚ DESPLEGABLE -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const toggle = document.getElementById('dropdownToggle');
