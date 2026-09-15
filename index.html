@@ -345,13 +345,6 @@
             font-size: 1.4rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 40px;
         }
 
-        /* --- CLASE ESPECIAL PARA RESALTAR TEXTO EN NEÓN --- */
-        .highlight-neon {
-            color: var(--neon-blue);
-            text-shadow: 0 0 5px rgba(0, 240, 255, 0.5);
-            font-weight: 700;
-        }
-
         .detail-visuals {
             flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; position: relative;
         }
@@ -393,7 +386,7 @@
             color: var(--neon-blue); text-transform: uppercase; margin-bottom: 20px;
         }
 
-        /* Cuadro Biografía Confianza */
+        /* Cuadro Biografía Confianza - DISEÑO ESTRICTAMENTE HORIZONTAL PARA ESCRITORIO */
         .bio-box {
             max-width: 800px;
             margin: 0 auto 40px;
@@ -498,6 +491,7 @@
                 z-index: 15;
             }
 
+            /* TUS VALORES EXACTOS PARA LAS FOTOS DIFUMINADAS */
             .fifa-slideshow {
                 position: relative; 
                 width: 100%; 
@@ -527,6 +521,7 @@
                 margin-bottom: 5px; 
             }
             
+            /* EL CAMBIAZO: Ahora box-square (cuadrado) tiene el video */
             .box-square {
                 grid-column: 1 / 2;
                 grid-row: 2 / 3;
@@ -542,14 +537,12 @@
                 align-self: center; 
             }
 
-            /* --- EL CAMBIAZO A CUADRADOS CENTRADOS --- */
+            /* EL CAMBIAZO: Ahora box-wide (ancho) tiene las fotos */
             .box-wide {
                 grid-column: 1 / -1;
                 grid-row: 3 / 4;
-                aspect-ratio: 1/1; /* 1/1 lo hace un cuadrado perfecto */
-                width: 85%; /* Menos del 100% para poder centrarlo */
-                max-width: 320px;
-                margin: 15px auto 0 auto; /* Centrado automático */
+                aspect-ratio: 16/9; 
+                margin-top: 10px;
             }
 
             .btn-section-cotizar {
@@ -563,27 +556,27 @@
 
             .contact-section h2 { font-size: 3rem; }
             
-            /* AJUSTE BIOGRAFÍA EN MÓVIL (LETRA DIMINUTA Y CUADRO HORIZONTAL) */
+            /* AJUSTE BIOGRAFÍA EN MÓVIL: ESTRICTAMENTE HORIZONTAL (ESTILO VIDEO) */
             .bio-box { 
                 width: 100%; 
-                aspect-ratio: 16/9; /* Mantiene proporción de video */
+                aspect-ratio: 16/9; /* Forza forma horizontal estricta de un video */
                 padding: 10px 15px; 
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 border: 1px solid rgba(0, 240, 255, 0.2); 
                 margin-bottom: 25px; 
-                background: #111; 
+                background: #111; /* Color de fondo tipo video */
             }
 
             .bio-text { 
-                font-size: 0.65rem; /* Letra ultra pequeña y cómoda */
-                line-height: 1.2; 
+                font-size: 0.75rem; /* Letra ultracompacta para que no desborde verticalmente */
+                line-height: 1.3; 
                 text-align: center;
             }
 
             .bio-text strong { 
-                font-size: 0.85rem; 
+                font-size: 1rem; 
                 margin-bottom: 6px;
                 display: block;
             }
@@ -607,4 +600,204 @@
             <div class="dropdown">
                 <a href="#" id="dropdownToggle">Elige tu Show</a>
                 <div class="dropdown-content" id="dropdownMenu">
-                    <a href="#empresas">Empresas
+                    <a href="#empresas">Empresas</a>
+                    <a href="#activaciones">Activaciones de Marca</a>
+                    <a href="#cumpleanos">Cumpleaños y Celebraciones</a>
+                    <a href="#colegios">Colegios y Eventos</a>
+                </div>
+            </div>
+            
+            <span class="separator">&bull;</span>
+            <a href="#contacto" class="btn-cotizar">Cotizar</a>
+        </nav>
+    </header>
+
+    <main id="inicio" class="hero-section">
+        <div class="content-left">
+            <h1>MUCHO MÁS<br>QUE FÚTBOL</h1>
+            <p class="subtitle">
+                Conecta y sorprende con <br>
+                <span class="text-neon">Show de futbol freestyle</span> para:
+            </p>
+            
+            <div class="services-container">
+                <div class="services-grid">
+                    <a href="#empresas" class="service-card"><span class="card-text">Empresas</span></a>
+                    <a href="#activaciones" class="service-card"><span class="card-text">Activa<br>tu marca</span></a>
+                    <a href="#cumpleanos" class="service-card"><span class="card-text">Cumpleaños y<br>celebraciones</span></a>
+                    <a href="#colegios" class="service-card"><span class="card-text">Colegios<br>y eventos</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="image-right">
+            <div class="hud-background"></div>
+
+            <div class="fifa-slideshow">
+                <img src="evento1.jpg" class="slide-main sm-1">
+                <img src="evento2.jpeg" class="slide-main sm-2">
+                <img src="evento3.jpeg" class="slide-main sm-3">
+                <img src="evento4.jpg" class="slide-main sm-4">
+                <img src="evento5.jpeg" class="slide-main sm-5">
+                <img src="evento6.jpeg" class="slide-main sm-6">
+                <img src="evento7.jpeg" class="slide-main sm-7">
+                <img src="evento8.jpg" class="slide-main sm-8">
+                <img src="evento9.jpg" class="slide-main sm-9">
+                <img src="evento10.jpg" class="slide-main sm-10">
+                <img src="evento11.jpeg" class="slide-main sm-11">
+                <img src="evento12.jpeg" class="slide-main sm-12">
+                <img src="evento13.jpeg" class="slide-main sm-13">
+                <img src="evento14.jpeg" class="slide-main sm-14">
+                <img src="evento15.jpeg" class="slide-main sm-15">
+                <img src="evento16.jpeg" class="slide-main sm-16">
+                <img src="evento19.jpeg" class="slide-main sm-17">
+            </div>
+            
+            <video src="siluetalogo.mp4" poster="siluetaimagen.png" preload="auto" autoplay loop muted playsinline class="player-img"></video>
+        </div>
+    </main>
+    
+    <div class="badge">
+        <video src="siluetalogo.mp4" poster="siluetaimagen.png" autoplay loop muted playsinline class="badge-video"></video>
+        <p>Pipe Shows<br>Futbol Freestyle</p>
+    </div>
+
+    <section id="empresas" class="detail-section">
+        <div class="detail-content">
+            <div class="detail-text">
+                <h2>EMPRESAS</h2>
+                <p>Convierte tu oficina, bodega o lugar de trabajo en diversión. Rompe la rutina con una experiencia diferente que integra a todo el equipo, eleva la energía y genera un ambiente inolvidable.</p>
+            </div>
+            <div class="detail-visuals">
+                <div class="media-box box-square">
+                    <video src="video-empresas.mp4" poster="poster-empresas.jpg" autoplay loop muted playsinline></video>
+                </div>
+                <div class="media-box box-wide">
+                    <img src="empresas1.jpg" class="slide-5 s5-1">
+                    <img src="empresas2.jpg" class="slide-5 s5-2">
+                    <img src="empresas3.jpg" class="slide-5 s5-3">
+                    <img src="empresas4.jpg" class="slide-5 s5-4">
+                    <img src="empresas5.jpg" class="slide-5 s5-5">
+                </div>
+                <a href="#contacto" class="btn-section-cotizar">Cotizar Evento Empresarial</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="activaciones" class="detail-section">
+        <div class="detail-content reverse-desktop">
+            <div class="detail-text">
+                <h2>ACTIVACIONES DE MARCA</h2>
+                <p>Usa el fútbol freestyle para llamar la atención, atraer más personas y generar oportunidades para vender más. El freestyle llama la atención, la atención genera tráfico, y el tráfico se convierte en ventas.</p>
+            </div>
+            <div class="detail-visuals">
+                <div class="media-box box-square">
+                    <video src="video-marca.mp4" poster="poster-marca.jpg" autoplay loop muted playsinline></video>
+                </div>
+                <div class="media-box box-wide">
+                    <img src="marca1.jpg" class="slide-5 s5-1">
+                    <img src="marca2.jpg" class="slide-5 s5-2">
+                    <img src="marca3.jpg" class="slide-5 s5-3">
+                    <img src="marca4.jpg" class="slide-5 s5-4">
+                    <img src="marca5.jpg" class="slide-5 s5-5">
+                </div>
+                <a href="#contacto" class="btn-section-cotizar">Cotizar Activación</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="cumpleanos" class="detail-section">
+        <div class="detail-content">
+            <div class="detail-text">
+                <h2>CUMPLEAÑOS Y CELEBRACIONES</h2>
+                <p>Lleva alegría y asombro a tu celebración. Un show interactivo donde todos participan y se sienten estrellas por un día. Diversión pura apta para todas las edades y públicos.</p>
+            </div>
+            <div class="detail-visuals">
+                <div class="media-box box-square">
+                    <video src="video-cumpleanos.mp4" poster="poster-cumpleanos.jpg" autoplay loop muted playsinline></video>
+                </div>
+                <div class="media-box box-wide">
+                    <img src="cumpleanos1.jpg" class="slide-5 s5-1">
+                    <img src="cumpleanos2.jpg" class="slide-5 s5-2">
+                    <img src="cumpleanos3.jpg" class="slide-5 s5-3">
+                    <img src="cumpleanos4.jpg" class="slide-5 s5-4">
+                    <img src="cumpleanos5.jpg" class="slide-5 s5-5">
+                </div>
+                <a href="#contacto" class="btn-section-cotizar">Cotizar Cumpleaños</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="colegios" class="detail-section">
+        <div class="detail-content reverse-desktop">
+            <div class="detail-text">
+                <h2>COLEGIOS Y EVENTOS</h2>
+                <p>Lleva la emoción a tu colegio conectando con el público masivo, eventos deportivos y actividades institucionales con pura energía y adrenalina.</p>
+            </div>
+            <div class="detail-visuals">
+                <div class="media-box box-square">
+                    <video src="video-colegios.mp4" poster="poster-colegios.jpg" autoplay loop muted playsinline></video>
+                </div>
+                <div class="media-box box-wide">
+                    <img src="colegioseventos1.jpg" class="slide-5 s5-1">
+                    <img src="colegioseventos2.jpg" class="slide-5 s5-2">
+                    <img src="colegioseventos3.jpg" class="slide-5 s5-3">
+                    <img src="colegioseventos4.jpg" class="slide-5 s5-4">
+                    <img src="colegioseventos5.jpg" class="slide-5 s5-5">
+                </div>
+                <a href="#contacto" class="btn-section-cotizar">Cotizar Evento Masivo</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="contact-section">
+        <h2>¿LISTO PARA SORPRENDER?</h2>
+        
+        <div class="bio-box">
+            <p class="bio-text">
+                <strong>¡HOLA! SOY PIPE.</strong>
+                <span>Más de 8 años como profesional de fútbol freestyle en escenarios, eventos y activaciones de marca. Más allá de trucos asombrosos, mi objetivo es el manejo excepcional del público: conectar con tu gente, elevar la energía y garantizar una experiencia inolvidable. ¡Hagamos de tu evento un éxito rotundo!</span>
+            </p>
+        </div>
+
+        <p>Hablemos y diseñemos un show a tu medida.</p>
+        
+        <div class="social-links">
+            <a href="https://wa.me/573000000000" target="_blank" class="social-box">
+                <span class="social-icon">🟢</span> WhatsApp: +57 300 000 0000
+            </a>
+            <a href="#" target="_blank" class="social-box">
+                <span class="social-icon">🔵</span> Facebook Oficial
+            </a>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggle = document.getElementById('dropdownToggle');
+            const menu = document.getElementById('dropdownMenu');
+            
+            // Abrir / Cerrar al darle clic a "Elige tu Show"
+            toggle.addEventListener('click', (e) => {
+                e.preventDefault(); 
+                menu.classList.toggle('show-dropdown');
+            });
+
+            // Cerrar el menú si haces clic en cualquier otra parte de la pantalla
+            document.addEventListener('click', (e) => {
+                if(!toggle.contains(e.target) && !menu.contains(e.target)) {
+                    menu.classList.remove('show-dropdown');
+                }
+            });
+
+            // Cerrar el menú automáticamente al seleccionar un show
+            const links = menu.querySelectorAll('a');
+            links.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.remove('show-dropdown');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
