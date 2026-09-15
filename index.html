@@ -235,13 +235,6 @@
             color: var(--neon-blue); font-weight: 700; text-shadow: 0 0 8px rgba(0, 240, 255, 0.4); font-size: 1.8rem;
         }
 
-        /* CLASE PARA RESALTAR TEXTO EN PÁRRAFOS */
-        .highlight {
-            color: var(--neon-blue);
-            font-weight: 700;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
-        }
-
         .services-container { width: 100%; max-width: 600px; }
         .services-grid { display: flex; gap: 12px; }
 
@@ -345,7 +338,20 @@
 
         .detail-text h2 {
             font-family: 'Teko', sans-serif; font-size: 4.5rem; line-height: 0.9;
-            color: var(--neon-blue); margin-bottom: 20px; text-transform: uppercase;
+            color: var(--text-main); margin-bottom: 20px; text-transform: uppercase;
+        }
+
+        /* ESLOGANES EN TÍTULOS */
+        .title-slogan {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            text-transform: none;
+            display: inline-block;
+            margin-left: 15px;
+            vertical-align: middle;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+            font-weight: 700;
         }
 
         .detail-text p {
@@ -359,8 +365,9 @@
         .media-box {
             position: relative; border: 1px solid rgba(0, 240, 255, 0.2); border-radius: 8px;
             overflow: hidden; 
-            aspect-ratio: 1/1; /* AHORA SON CUADRADOS EN ESCRITORIO */
+            aspect-ratio: 1/1; /* CUADRADOS EN ESCRITORIO Y CELULAR */
             background: #111;
+            width: 100%;
         }
 
         .media-box video { width: 100%; height: 100%; object-fit: cover; }
@@ -375,6 +382,16 @@
 
         @keyframes fadeFive {
             0%   { opacity: 0; } 4%   { opacity: 1; } 16%  { opacity: 1; } 20%  { opacity: 0; } 100% { opacity: 0; }
+        }
+
+        /* Estilo para los avisos de videos de terceros */
+        .disclaimer-video {
+            font-size: 0.75rem;
+            color: #8a9bb0;
+            font-style: italic;
+            margin-top: 8px;
+            text-align: center;
+            line-height: 1.2;
         }
 
         .detail-visuals .btn-section-cotizar {
@@ -408,7 +425,7 @@
         }
 
         .bio-text {
-            font-size: 0.9rem; /* REDUCIDO */
+            font-size: 0.8rem; /* REDUCIDO */
             color: #d1d5db; 
             line-height: 1.5; 
             margin: 0;
@@ -416,7 +433,7 @@
 
         .bio-text strong {
             color: var(--neon-blue); 
-            font-size: 1.2rem; /* REDUCIDO */
+            font-size: 1.4rem; /* MÁS GRANDE */
             font-weight: 700; 
             display: block; 
             margin-bottom: 10px;
@@ -527,7 +544,15 @@
                 text-align: center; 
                 margin-bottom: 5px; 
             }
+
+            .title-slogan {
+                display: block;
+                margin-left: 0;
+                margin-top: -5px;
+                font-size: 1.2rem;
+            }
             
+            /* AHORA box-square TIENE LAS FOTOS (Posición izquierda/arriba en móvil) */
             .box-square {
                 grid-column: 1 / 2;
                 grid-row: 2 / 3;
@@ -543,14 +568,17 @@
                 align-self: center; 
             }
 
-            /* LA IMAGEN AHORA ES CUADRADA Y CENTRADA */
-            .box-wide {
+            /* AHORA box-wide-wrapper TIENE EL VIDEO (Posición centrada/abajo en móvil) */
+            .box-wide-wrapper {
                 grid-column: 1 / -1;
                 grid-row: 3 / 4;
-                aspect-ratio: 1/1; /* 100% Cuadrado */
-                width: 85%; /* Ligeramente más angosto para centrarlo estéticamente */
-                justify-self: center; /* Lo centra en medio de la pantalla */
+                width: 85%; /* Centrado estético */
+                justify-self: center; 
                 margin-top: 10px;
+            }
+
+            .disclaimer-video {
+                font-size: 0.65rem;
             }
 
             .btn-section-cotizar {
@@ -577,13 +605,13 @@
             }
 
             .bio-text { 
-                font-size: 0.6rem; /* AÚN MÁS PEQUEÑO EN MÓVIL */
+                font-size: 0.55rem; /* AÚN MÁS PEQUEÑO EN MÓVIL */
                 line-height: 1.3; 
                 text-align: center;
             }
 
             .bio-text strong { 
-                font-size: 0.85rem; /* TÍTULO AÚN MÁS PEQUEÑO */
+                font-size: 1.1rem; /* MÁS GRANDE EN MÓVIL */
                 margin-bottom: 6px;
                 display: block;
             }
@@ -672,19 +700,24 @@
     <section id="empresas" class="detail-section">
         <div class="detail-content">
             <div class="detail-text">
-                <h2>EMPRESAS</h2>
-                <p>Convierte tu oficina, bodega o lugar de trabajo en diversión. <span class="highlight">Rompe la rutina</span> con una experiencia diferente que integra a todo el equipo, eleva la energía y genera un ambiente inolvidable.</p>
+                <h2>EMPRESAS <span class="title-slogan">Rompe la rutina</span></h2>
+                <p>Lleva algo diferente y pura diversión a tu oficina, bodega o espacio de trabajo. Sorprende a tu equipo y transforma la rutina diaria en una experiencia llena de energía.</p>
             </div>
             <div class="detail-visuals">
+                <!-- AHORA: Las fotos van en el cuadro izquierdo/cuadrado (box-square) -->
                 <div class="media-box box-square">
-                    <video src="video-empresas.mp4" poster="poster-empresas.jpg" autoplay loop muted playsinline></video>
-                </div>
-                <div class="media-box box-wide">
                     <img src="empresas1.jpg" class="slide-5 s5-1">
                     <img src="empresas2.jpg" class="slide-5 s5-2">
                     <img src="empresas3.jpg" class="slide-5 s5-3">
                     <img src="empresas4.jpg" class="slide-5 s5-4">
                     <img src="empresas5.jpg" class="slide-5 s5-5">
+                </div>
+                <!-- AHORA: El video va en el cuadro derecho/centrado abajo (box-wide-wrapper) -->
+                <div class="box-wide-wrapper">
+                    <div class="media-box">
+                        <video src="video-empresas.mp4" poster="poster-empresas.jpg" autoplay loop muted playsinline></video>
+                    </div>
+                    <p class="disclaimer-video"><i>* Participaciones como jugador de fútbol freestyle mediante producciones de terceros</i></p>
                 </div>
                 <a href="#contacto" class="btn-section-cotizar">Cotizar Evento Empresarial</a>
             </div>
@@ -694,19 +727,24 @@
     <section id="activaciones" class="detail-section">
         <div class="detail-content reverse-desktop">
             <div class="detail-text">
-                <h2>ACTIVACIONES DE MARCA</h2>
-                <p>Usa el fútbol freestyle para llamar la atención, atraer más personas y generar oportunidades para <span class="highlight">vender más</span>. El freestyle llama la atención, la atención genera tráfico, y el tráfico se convierte en ventas.</p>
+                <h2>ACTIVACIONES DE MARCA <span class="title-slogan">Potencia tus ventas</span></h2>
+                <p>El fútbol freestyle es llamativo. Aprovéchalo para captar la atención de las personas, generar un impacto interactivo y por ende, mejorar tus ventas de forma creativa.</p>
             </div>
             <div class="detail-visuals">
+                <!-- AHORA: Las fotos van en el cuadro izquierdo/cuadrado (box-square) -->
                 <div class="media-box box-square">
-                    <video src="video-marca.mp4" poster="poster-marca.jpg" autoplay loop muted playsinline></video>
-                </div>
-                <div class="media-box box-wide">
                     <img src="marca1.jpg" class="slide-5 s5-1">
                     <img src="marca2.jpg" class="slide-5 s5-2">
                     <img src="marca3.jpg" class="slide-5 s5-3">
                     <img src="marca4.jpg" class="slide-5 s5-4">
                     <img src="marca5.jpg" class="slide-5 s5-5">
+                </div>
+                <!-- AHORA: El video va en el cuadro derecho/centrado abajo (box-wide-wrapper) -->
+                <div class="box-wide-wrapper">
+                    <div class="media-box">
+                        <video src="video-marca.mp4" poster="poster-marca.jpg" autoplay loop muted playsinline></video>
+                    </div>
+                    <p class="disclaimer-video"><i>* Participaciones como jugador de fútbol freestyle mediante producciones de terceros</i></p>
                 </div>
                 <a href="#contacto" class="btn-section-cotizar">Cotizar Activación</a>
             </div>
@@ -716,19 +754,24 @@
     <section id="cumpleanos" class="detail-section">
         <div class="detail-content">
             <div class="detail-text">
-                <h2>CUMPLEAÑOS Y CELEBRACIONES</h2>
-                <p>Lleva alegría y asombro a tu celebración. Un show interactivo donde todos participan y se sienten estrellas por un día. Diversión pura apta para todas las edades y públicos.</p>
+                <h2>CUMPLEAÑOS Y CELEBRACIONES <span class="title-slogan">Sé el alma de la fiesta</span></h2>
+                <p>Protagonismo absoluto para tu cumpleaños, celebración o fiesta de Halloween. Un show interactivo apto para todas las edades donde la diversión nunca falta.</p>
             </div>
             <div class="detail-visuals">
+                <!-- AHORA: Las fotos van en el cuadro izquierdo/cuadrado (box-square) -->
                 <div class="media-box box-square">
-                    <video src="video-cumpleanos.mp4" poster="poster-cumpleanos.jpg" autoplay loop muted playsinline></video>
-                </div>
-                <div class="media-box box-wide">
                     <img src="cumpleanos1.jpg" class="slide-5 s5-1">
                     <img src="cumpleanos2.jpg" class="slide-5 s5-2">
                     <img src="cumpleanos3.jpg" class="slide-5 s5-3">
                     <img src="cumpleanos4.jpg" class="slide-5 s5-4">
                     <img src="cumpleanos5.jpg" class="slide-5 s5-5">
+                </div>
+                <!-- AHORA: El video va en el cuadro derecho/centrado abajo (box-wide-wrapper) -->
+                <div class="box-wide-wrapper">
+                    <div class="media-box">
+                        <video src="video-cumpleanos.mp4" poster="poster-cumpleanos.jpg" autoplay loop muted playsinline></video>
+                    </div>
+                    <!-- Esta sección no pidió disclaimer, pero se mantiene la estructura por consistencia -->
                 </div>
                 <a href="#contacto" class="btn-section-cotizar">Cotizar Cumpleaños</a>
             </div>
@@ -738,19 +781,23 @@
     <section id="colegios" class="detail-section">
         <div class="detail-content reverse-desktop">
             <div class="detail-text">
-                <h2>COLEGIOS Y EVENTOS</h2>
-                <p>Lleva la emoción a tu colegio conectando con el público masivo, eventos deportivos y actividades institucionales con pura energía y adrenalina.</p>
+                <h2>COLEGIOS Y EVENTOS <span class="title-slogan">Vive el momento</span></h2>
+                <p>Lleva adrenalina y emoción masiva. Un espectáculo donde participan espectadores de todas las edades, dándole todo el protagonismo a tu evento institucional o deportivo.</p>
             </div>
             <div class="detail-visuals">
+                <!-- AHORA: Las fotos van en el cuadro izquierdo/cuadrado (box-square) -->
                 <div class="media-box box-square">
-                    <video src="video-colegios.mp4" poster="poster-colegios.jpg" autoplay loop muted playsinline></video>
-                </div>
-                <div class="media-box box-wide">
                     <img src="colegioseventos1.jpg" class="slide-5 s5-1">
                     <img src="colegioseventos2.jpg" class="slide-5 s5-2">
                     <img src="colegioseventos3.jpg" class="slide-5 s5-3">
                     <img src="colegioseventos4.jpg" class="slide-5 s5-4">
                     <img src="colegioseventos5.jpg" class="slide-5 s5-5">
+                </div>
+                <!-- AHORA: El video va en el cuadro derecho/centrado abajo (box-wide-wrapper) -->
+                <div class="box-wide-wrapper">
+                    <div class="media-box">
+                        <video src="video-colegios.mp4" poster="poster-colegios.jpg" autoplay loop muted playsinline></video>
+                    </div>
                 </div>
                 <a href="#contacto" class="btn-section-cotizar">Cotizar Evento Masivo</a>
             </div>
@@ -763,7 +810,7 @@
         <div class="bio-box">
             <p class="bio-text">
                 <strong>¡HOLA! SOY PIPE.</strong>
-                <span>Más de 8 años como profesional de fútbol freestyle en escenarios, eventos y activaciones de marca. Más allá de trucos asombrosos, mi objetivo es el manejo excepcional del público: conectar con tu gente, eleva la energía y garantizar una experiencia inolvidable. ¡Hagamos de tu evento un éxito rotundo!</span>
+                <span>Más de 8 años como profesional de fútbol freestyle en escenarios, eventos y activaciones de marca. Más allá de trucos asombrosos, mi objetivo es el manejo excepcional del público: conectar con tu gente, elevar la energía y garantizar una experiencia inolvidable. ¡Hagamos de tu evento un éxito rotundo!</span>
             </p>
         </div>
 
