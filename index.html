@@ -372,16 +372,39 @@
 
         .media-box video { width: 100%; height: 100%; object-fit: cover; }
 
-        .slide-5 {
+/* --- ANIMACIONES DE 1.5 SEGUNDOS POR FOTO SEGÚN CANTIDAD --- */
+        .slide-6, .slide-7, .slide-8 {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
-            opacity: 0; animation: fadeFive 7.5s infinite;
+            opacity: 0;
         }
-        
-        .s5-1 { animation-delay: 0s; } .s5-2 { animation-delay: 1.5s; } .s5-3 { animation-delay: 3s; }
-        .s5-4 { animation-delay: 4.5s; } .s5-5 { animation-delay: 6s; }
 
-        @keyframes fadeFive {
-            0%   { opacity: 0; } 4%   { opacity: 1; } 16%  { opacity: 1; } 20%  { opacity: 0; } 100% { opacity: 0; }
+        /* 6 Fotos (6 x 1.5s = 9s ciclo total) */
+        .slide-6 { animation: fadeSix 9s infinite; }
+        .s6-1 { animation-delay: 0s; }   .s6-2 { animation-delay: 1.5s; } .s6-3 { animation-delay: 3s; }
+        .s6-4 { animation-delay: 4.5s; } .s6-5 { animation-delay: 6s; }   .s6-6 { animation-delay: 7.5s; }
+
+        @keyframes fadeSix {
+            0% { opacity: 0; } 3% { opacity: 1; } 14% { opacity: 1; } 17% { opacity: 0; } 100% { opacity: 0; }
+        }
+
+        /* 7 Fotos (7 x 1.5s = 10.5s ciclo total) */
+        .slide-7 { animation: fadeSeven 10.5s infinite; }
+        .s7-1 { animation-delay: 0s; }   .s7-2 { animation-delay: 1.5s; } .s7-3 { animation-delay: 3s; }
+        .s7-4 { animation-delay: 4.5s; } .s7-5 { animation-delay: 6s; }   .s7-6 { animation-delay: 7.5s; }
+        .s7-7 { animation-delay: 9s; }
+
+        @keyframes fadeSeven {
+            0% { opacity: 0; } 3% { opacity: 1; } 12% { opacity: 1; } 15% { opacity: 0; } 100% { opacity: 0; }
+        }
+
+        /* 8 Fotos (8 x 1.5s = 12s ciclo total) */
+        .slide-8 { animation: fadeEight 12s infinite; }
+        .s8-1 { animation-delay: 0s; }   .s8-2 { animation-delay: 1.5s; } .s8-3 { animation-delay: 3s; }
+        .s8-4 { animation-delay: 4.5s; } .s8-5 { animation-delay: 6s; }   .s8-6 { animation-delay: 7.5s; }
+        .s8-7 { animation-delay: 9s; }   .s8-8 { animation-delay: 10.5s; }
+
+        @keyframes fadeEight {
+            0% { opacity: 0; } 3% { opacity: 1; } 10% { opacity: 1; } 13% { opacity: 0; } 100% { opacity: 0; }
         }
 
         /* Estilo para los avisos de videos de terceros */
@@ -705,12 +728,15 @@
             </div>
             <div class="detail-visuals">
                 <!-- AHORA: Las fotos van en el cuadro izquierdo/cuadrado (box-square) -->
-                <div class="media-box box-square">
-                    <img src="empresas1.jpg" class="slide-5 s5-1">
-                    <img src="empresas2.jpg" class="slide-5 s5-2">
-                    <img src="empresas3.jpg" class="slide-5 s5-3">
-                    <img src="empresas4.jpg" class="slide-5 s5-4">
-                    <img src="empresas5.jpg" class="slide-5 s5-5">
+<div class="media-box box-square">
+                    <img src="empresas1.jpg" class="slide-8 s8-1">
+                    <img src="empresas2.jpg" class="slide-8 s8-2">
+                    <img src="empresas3.jpg" class="slide-8 s8-3">
+                    <img src="empresas4.jpg" class="slide-8 s8-4">
+                    <img src="empresas5.jpg" class="slide-8 s8-5">
+                    <img src="empresas6.jpg" class="slide-8 s8-6">
+                    <img src="empresas7.jpg" class="slide-8 s8-7">
+                    <img src="empresas8.jpg" class="slide-8 s8-8">
                 </div>
                 <!-- AHORA: El video va en el cuadro derecho/centrado abajo (box-wide-wrapper) -->
                 <div class="box-wide-wrapper">
@@ -732,12 +758,15 @@
             </div>
             <div class="detail-visuals">
                 <!-- AHORA: Las fotos van en el cuadro izquierdo/cuadrado (box-square) -->
-                <div class="media-box box-square">
-                    <img src="marca1.jpg" class="slide-5 s5-1">
-                    <img src="marca2.jpg" class="slide-5 s5-2">
-                    <img src="marca3.jpg" class="slide-5 s5-3">
-                    <img src="marca4.jpg" class="slide-5 s5-4">
-                    <img src="marca5.jpg" class="slide-5 s5-5">
+<div class="media-box box-square">
+                    <img src="marca1.jpg" class="slide-8 s8-1">
+                    <img src="marca2.jpg" class="slide-8 s8-2">
+                    <img src="marca3.jpg" class="slide-8 s8-3">
+                    <img src="marca4.jpg" class="slide-8 s8-4">
+                    <img src="marca5.jpg" class="slide-8 s8-5">
+                    <img src="marca6.jpg" class="slide-8 s8-6">
+                    <img src="marca7.jpg" class="slide-8 s8-7">
+                    <img src="marca8.jpg" class="slide-8 s8-8">
                 </div>
                 <!-- AHORA: El video va en el cuadro derecho/centrado abajo (box-wide-wrapper) -->
                 <div class="box-wide-wrapper">
@@ -759,12 +788,13 @@
             </div>
             <div class="detail-visuals">
                 <!-- AHORA: Las fotos van en el cuadro izquierdo/cuadrado (box-square) -->
-                <div class="media-box box-square">
-                    <img src="cumpleanos1.jpg" class="slide-5 s5-1">
-                    <img src="cumpleanos2.jpg" class="slide-5 s5-2">
-                    <img src="cumpleanos3.jpg" class="slide-5 s5-3">
-                    <img src="cumpleanos4.jpg" class="slide-5 s5-4">
-                    <img src="cumpleanos5.jpg" class="slide-5 s5-5">
+<div class="media-box box-square">
+                    <img src="cumpleanos1.jpg" class="slide-6 s6-1">
+                    <img src="cumpleanos2.jpg" class="slide-6 s6-2">
+                    <img src="cumpleanos3.jpg" class="slide-6 s6-3">
+                    <img src="cumpleanos4.jpg" class="slide-6 s6-4">
+                    <img src="cumpleanos5.jpg" class="slide-6 s6-5">
+                    <img src="cumpleanos6.jpg" class="slide-6 s6-6">
                 </div>
                 <!-- AHORA: El video va en el cuadro derecho/centrado abajo (box-wide-wrapper) -->
                 <div class="box-wide-wrapper">
@@ -786,12 +816,14 @@
             </div>
             <div class="detail-visuals">
                 <!-- AHORA: Las fotos van en el cuadro izquierdo/cuadrado (box-square) -->
-                <div class="media-box box-square">
-                    <img src="colegioseventos1.jpg" class="slide-5 s5-1">
-                    <img src="colegioseventos2.jpg" class="slide-5 s5-2">
-                    <img src="colegioseventos3.jpg" class="slide-5 s5-3">
-                    <img src="colegioseventos4.jpg" class="slide-5 s5-4">
-                    <img src="colegioseventos5.jpg" class="slide-5 s5-5">
+<div class="media-box box-square">
+                    <img src="colegios1.jpg" class="slide-7 s7-1">
+                    <img src="colegios2.jpg" class="slide-7 s7-2">
+                    <img src="colegios3.jpg" class="slide-7 s7-3">
+                    <img src="colegios4.jpg" class="slide-7 s7-4">
+                    <img src="colegios5.jpg" class="slide-7 s7-5">
+                    <img src="colegios6.jpg" class="slide-7 s7-6">
+                    <img src="colegios7.jpg" class="slide-7 s7-7">
                 </div>
                 <!-- AHORA: El video va en el cuadro derecho/centrado abajo (box-wide-wrapper) -->
                 <div class="box-wide-wrapper">
